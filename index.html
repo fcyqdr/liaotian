@@ -154,4 +154,85 @@
                     console.error('fileInput 未找到');
                     return;
                 }
-                file
+                fileInput.click();
+            } catch (error) {
+                console.error('triggerFileInput 错误:', error); // 错误日志
+            }
+        }
+
+        if (fileInput) {
+            fileInput.addEventListener('change', (e) => {
+                console.log('文件输入变化:', e.target.files); // 调试日志
+                try {
+                    const file = e.target.files[0];
+                    if (!file) {
+                        console.log('未选择文件'); // 调试日志
+                        return;
+                    }
+
+                    if (!chatBody) {
+                        console.error('chatBody 未找到');
+                        return;
+                    }
+
+                    const messageDiv = document.createElement('div');
+                    messageDiv.classList.add('message', 'sent');
+
+                    if (file.type.startsWith('image/')) {
+                        console.log('处理图片:', file.name); // 调试日志
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            try {
+                                const img = document.createElement('img');
+                                img.src = e.target.result;
+                                messageDiv.appendChild(img);
+                                chatBody.appendChild(messageDiv);
+                                chatBody.scrollTop = chatBody.scrollHeight;
+
+                                setTimeout(() => {
+                                    const replyDiv = document.createElement('div');
+                                    replyDiv.classList.add('message', 'received');
+                                    replyDiv.textContent = '收到一张图片！';
+                                    chatBody.appendChild(replyDiv);
+                                    chatBody.scrollTop = chatBody.scrollHeight;
+                                }, 1000);
+                            } catch (error) {
+                                console.error('图片加载错误:', error); // 错误日志
+                            }
+                        };
+                        reader.onerror = (error) => {
+                            console.error('FileReader 错误:', error); // 错误日志
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        console.log('非图片文件:', file.name); // 调试日志
+                        alert('仅支持图片文件！');
+                    }
+
+                    e.target.value = '';
+                } catch (error) {
+                    console.error('文件处理错误:', error); // 错误日志
+                }
+            });
+        } else {
+            console.error('fileInput 元素未找到，无法绑定 change 事件');
+        }
+
+        if (messageInput) {
+            messageInput.addEventListener('keypress', (e) => {
+                console.log('keypress 事件触发'); // 调试日志
+                try {
+                    if (e.key === 'Enter') {
+                        console.log('回车键触发发送'); // 调试日志
+                        sendMessage();
+                    }
+                } catch (error) {
+                    console.error('keypress 错误:', error); // 错误日志
+                }
+            });
+        } else {
+            console.error('messageInput 元素未找到，无法绑定 keypress 事件');
+        }
+    </script>
+</body>
+</html>
