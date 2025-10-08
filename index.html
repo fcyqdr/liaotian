@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>聊天网站 - 支持图片发送</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .chat-container {
+            width: 400px;
+            max-width: 90%;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            height: 80vh;
+        }
+        .chat-header {
+            background: #007bff;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .chat-body {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            border-bottom: 1px solid #ddd;
+        }
+        .message {
+            margin: 10px 0;
+            padding: 8px 12px;
+            border-radius: 5px;
+            max-width: 70%;
+            word-wrap: break-word;
+        }
+        .message.sent {
+            background: #007bff;
+            color: white;
+            margin-left: auto;
+            text-align: right;
+        }
+        .message.received {
+            background: #e9ecef;
+            margin-right: auto;
+        }
+        .message img {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+        .chat-footer {
+            padding: 10px;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+        }
+        .chat-footer input[type="text"] {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-right: 10px;
+            outline: none;
+        }
+        .chat-footer button {
+            padding: 8px 15px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .chat-footer button:hover {
+            background: #0056b3;
+        }
+        .chat-footer input[type="file"] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>聊天 - 支持图片</h2>
+        </div>
+        <div class="chat-body" id="chatBody"></div>
+        <div class="chat-footer">
+            <input type="text" id="messageInput" placeholder="输入消息...">
+            <input type="file" id="fileInput" accept="image/*">
+            <button onclick="triggerFileInput()">📎</button>
+            <button onclick="sendMessage()">发送</button>
+        </div>
+    </div>
+
+    <script>
+        // 初始化 DOM 元素
+        const messageInput = document.getElementById('messageInput');
+        const chatBody = document.getElementById('chatBody');
+        const fileInput = document.getElementById('fileInput');
+
+        // 检查 DOM 元素是否加载
+        console.log('DOM 初始化:', { messageInput, chatBody, fileInput });
+
+        function sendMessage() {
+            console.log('sendMessage 函数被调用'); // 调试日志
+            try {
+                if (!messageInput || !chatBody) {
+                    console.error('DOM 元素未找到:', { messageInput, chatBody });
+                    return;
+                }
+
+                const messageText = messageInput.value.trim();
+                if (messageText) {
+                    console.log('发送消息:', messageText); // 调试日志
+                    const messageDiv = document.createElement('div');
+                    messageDiv.classList.add('message', 'sent');
+                    messageDiv.textContent = messageText;
+                    chatBody.appendChild(messageDiv);
+                    messageInput.value = '';
+                    chatBody.scrollTop = chatBody.scrollHeight;
+
+                    setTimeout(() => {
+                        const replyDiv = document.createElement('div');
+                        replyDiv.classList.add('message', 'received');
+                        replyDiv.textContent = '收到：' + messageText;
+                        chatBody.appendChild(replyDiv);
+                        chatBody.scrollTop = chatBody.scrollHeight;
+                    }, 1000);
+                } else {
+                    console.log('输入为空，未发送消息'); // 调试日志
+                }
+            } catch (error) {
+                console.error('sendMessage 错误:', error); // 错误日志
+            }
+        }
+
+        function triggerFileInput() {
+            console.log('triggerFileInput 函数被调用'); // 调试日志
+            try {
+                if (!fileInput) {
+                    console.error('fileInput 未找到');
+                    return;
+                }
+                file
