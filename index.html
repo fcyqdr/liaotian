@@ -86,104 +86,59 @@
             z-index: 10;
             padding: 20px;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 18px;
             max-width: 1000px;
             margin: 0 auto;
         }
 
-        /* 磁贴样式 */
+        /* 磁贴样式（显示式简介） */
         .tile {
             position: relative;
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
             transition: transform 0.3s, box-shadow 0.3s;
             cursor: pointer;
             text-decoration: none;
             color: white;
-            font-weight: bold;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
-            padding: 15px;
+            padding: 16px 12px;
             text-align: center;
-            min-height: 100px;
+            min-height: 130px;
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
         }
         .tile:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.4);
         }
         .tile img {
-            width: 50px;
-            height: 50px;
-            margin-bottom: 8px;
+            width: 48px;
+            height: 48px;
+            margin-bottom: 10px;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+            border-radius: 8px;
         }
-        .tile span {
-            font-size: 14px;
+        .tile-title {
+            font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 6px;
             text-shadow: 0 1px 2px rgba(0,0,0,0.5);
         }
-
-        /* 磁贴简介（悬停显示） */
-        .tile-tooltip {
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.85);
-            color: #fff;
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 13px;
-            white-space: nowrap;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 20;
-            margin-bottom: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            pointer-events: none;
-        }
-        .tile-tooltip::after {
-            content: '';
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            border: 6px solid transparent;
-            border-top-color: rgba(0, 0, 0, 0.85);
-        }
-        .tile:hover .tile-tooltip {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(-50%) translateY(-5px);
+        .tile-desc {
+            font-size: 12px;
+            color: #ddd;
+            line-height: 1.4;
+            opacity: 0.9;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
         }
 
-        /* 移动端：点击显示简介 */
-        @media (max-width: 768px) {
-            .tile-tooltip {
-                position: static;
-                transform: none;
-                opacity: 0;
-                visibility: hidden;
-                background: rgba(0,0,0,0.7);
-                margin-top: 5px;
-                white-space: normal;
-                text-align: center;
-                padding: 6px 8px;
-                font-size: 12px;
-            }
-            .tile-tooltip::after { display: none; }
-            .tile:active .tile-tooltip,
-            .tile.touched .tile-tooltip {
-                opacity: 1;
-                visibility: visible;
-            }
-        }
-
-        /* 磁贴颜色 */
+        /* 磁贴颜色覆盖（保留渐变底色） */
         .tile.google { background: linear-gradient(135deg, #4285F4, #34A853); }
         .tile.baidu { background: linear-gradient(135deg, #2932E1, #00D1FF); }
         .tile.youku { background: linear-gradient(135deg, #FF6B35, #FF8C42); }
@@ -280,7 +235,18 @@
 
         /* 响应式 */
         @media (max-width: 768px) {
-            .tiles-container { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 15px; }
+            .tiles-container { 
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 14px; 
+                padding: 15px; 
+            }
+            .tile { 
+                min-height: 120px; 
+                padding: 12px 8px; 
+            }
+            .tile img { width: 40px; height: 40px; }
+            .tile-title { font-size: 14px; }
+            .tile-desc { font-size: 11px; }
             .header { font-size: 16px; padding: 12px; }
             .profile-card { flex-direction: column; text-align: center; padding: 15px; }
             .profile-avatar { width: 70px; height: 70px; }
@@ -303,48 +269,48 @@
         防止掉失！购买影片前先注册
     </div>
 
-    <!-- 磁贴导航（带简介） -->
+    <!-- 磁贴导航（显示式简介） -->
     <div class="tiles-container">
         <!-- 1. Ai脱衣 -->
         <a href="https://l6k0z7n2y7s9z8m4v4i9.cc/?channel=6d530728c0583d8037db5bd8e9e6ea52" target="_blank" class="tile google">
             <img src="images11.jpg" alt="Ai脱衣">
-            <span>Ai脱衣</span>
-            <div class="tile-tooltip">AI智能去衣，秒变艺术照！</div>
+            <div class="tile-title">Ai脱衣</div>
+            <div class="tile-desc">AI智能去衣<br>秒变艺术照！</div>
         </a>
 
         <!-- 2. 幼女萝莉 -->
         <a href="http://wv24.icu" target="_blank" class="tile baidu">
             <img src="images12.jpg" alt="幼女萝莉">
-            <span>幼女萝莉</span>
-            <div class="tile-tooltip">高清萝莉资源，分类清晰</div>
+            <div class="tile-title">幼女萝莉</div>
+            <div class="tile-desc">高清萝莉资源<br>分类清晰</div>
         </a>
 
         <!-- 3. 真人直播 -->
         <a href="http://avaw.cc" target="_blank" class="tile youku">
             <img src="images3.jpg" alt="直播">
-            <span>真人直播</span>
-            <div class="tile-tooltip">24小时真人直播，互动强</div>
+            <div class="tile-title">真人直播</div>
+            <div class="tile-desc">24小时真人<br>互动强</div>
         </a>
 
         <!-- 4. 咸湿视频 -->
         <a href="http://se678.top" target="_blank" class="tile taobao">
             <img src="images4.jpg" alt="咸湿视频">
-            <span>咸湿视频</span>
-            <div class="tile-tooltip">人兽/欧美/亚洲，应有尽有</div>
+            <div class="tile-desc">人兽/欧美/亚洲<br>应有尽有</div>
+            <div class="tile-title">咸湿视频</div>
         </a>
 
         <!-- 5. 开云体育 -->
         <a href="https://www.hpluk7.vip:6001/entry/register52073/?i_code=27936549" target="_blank" class="tile jd">
             <img src="images1.jpg" alt="开云体育">
-            <span>开云体育</span>
-            <div class="tile-tooltip">全球赛事直播，实时投注</div>
+            <div class="tile-title">开云体育</div>
+            <div class="tile-desc">全球赛事直播<br>实时投注</div>
         </a>
 
         <!-- 6. 欧亚国际 -->
         <a href="http://42.51.43.192:25504?Tesla=NjAwNDMz" target="_blank" class="tile amazon">
             <img src="images2.jpg" alt="欧亚国际">
-            <span>欧亚国际</span>
-            <div class="tile-tooltip">实体娱乐城，尊贵体验</div>
+            <div class="tile-title">欧亚国际</div>
+            <div class="tile-desc">实体娱乐城<br>尊贵体验</div>
         </a>
     </div>
 
@@ -394,27 +360,13 @@
             document.body.classList.toggle('light');
             
             if (document.body.classList.contains('light')) {
-                modeBtn.innerHTML = 'Light Mode';
+                modeBtn.innerHTML = '切换到暗黑模式';
                 modeBtn.title = '切换到暗黑模式';
             } else {
-                modeBtn.innerHTML = 'Dark Mode';
+                modeBtn.innerHTML = '切换到亮白模式';
                 modeBtn.title = '切换到亮白模式';
             }
         });
-
-        // 移动端点击显示简介
-        if ('ontouchstart' in window) {
-            document.querySelectorAll('.tile').forEach(tile => {
-                tile.addEventListener('click', function(e) {
-                    if (!this.classList.contains('touched')) {
-                        e.preventDefault();
-                        document.querySelectorAll('.tile').forEach(t => t.classList.remove('touched'));
-                        this.classList.add('touched');
-                        setTimeout(() => this.classList.remove('touched'), 2000);
-                    }
-                });
-            });
-        }
     </script>
 
 </body>
