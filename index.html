@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>小黑巷</title>
+    <title>小黑巷的快乐</title>
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-95QQNEC27X"></script>
@@ -14,7 +14,7 @@
         gtag('config', 'G-95QQNEC27X');
     </script>
 
-    <!-- Statcounter Code（真实访问统计） -->
+    <!-- Statcounter Code -->
     <script type="text/javascript">
     var sc_project=13180843; 
     var sc_invisible=0; 
@@ -27,7 +27,6 @@
     href="https://statcounter.com/" target="_blank"><img class="statcounter"
     src="https://c.statcounter.com/13180843/0/f4187e06/0/" alt="Web Analytics"
     referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
-    <!-- End of Statcounter Code -->
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -56,8 +55,6 @@
             background-size: cover;
         }
         body.light::before { background: rgba(255, 255, 255, 0.75); }
-        body.light .header, body.light .announcement { filter: brightness(0.92); }
-        body.light .tile { opacity: 0.96; }
 
         /* 滑动公告 */
         .announcement {
@@ -97,7 +94,7 @@
             50% { text-shadow: 0 0 5px #fff; }
         }
 
-        /* 磁贴容器：固定两列/三列 */
+        /* 磁贴容器 */
         .tiles-container {
             position: relative;
             z-index: 10;
@@ -112,7 +109,7 @@
             .tiles-container { grid-template-columns: repeat(3, 1fr); }
         }
 
-        /* 长方形磁贴（拉满） */
+        /* 图片拉满磁贴 */
         .tile {
             position: relative;
             border-radius: 16px;
@@ -122,50 +119,52 @@
             cursor: pointer;
             text-decoration: none;
             color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px 16px;
             min-height: 160px;
-            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
-            text-align: center;
+            background: #000;
         }
         .tile:hover {
             transform: translateY(-8px);
             box-shadow: 0 16px 32px rgba(0,0,0,0.45);
         }
 
-        /* 放大图片 */
-        .tile img {
-            width: 60px;
-            height: 60px;
-            margin-bottom: 12px;
-            filter: drop-shadow(0 3px 6px rgba(0,0,0,0.4));
-            border-radius: 12px;
-            object-fit: cover;
+        .tile::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+            transition: transform 0.4s ease;
+        }
+        .tile:hover::before {
+            transform: scale(1.08);
+        }
+
+        .tile-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+            text-align: center;
+            background: linear-gradient(transparent, rgba(0,0,0,0.6));
         }
 
         .tile-title {
             font-weight: bold;
             font-size: 17px;
             margin-bottom: 6px;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         }
         .tile-desc {
             font-size: 13px;
-            color: #eee;
             line-height: 1.4;
-            opacity: 0.92;
+            opacity: 0.95;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.7);
         }
-
-        /* 磁贴颜色 */
-        .tile.google { background: linear-gradient(135deg, #4285F4, #34A853); }
-        .tile.baidu { background: linear-gradient(135deg, #2932E1, #00D1FF); }
-        .tile.youku { background: linear-gradient(135deg, #FF6B35, #FF8C42); }
-        .tile.taobao { background: linear-gradient(135deg, #FF4200, #FF6B00); }
-        .tile.jd { background: linear-gradient(135deg, #E2231A, #FF4A00); }
-        .tile.amazon { background: linear-gradient(135deg, #FF9900, #FFB84D); }
 
         /* 个人简介卡片 */
         .profile-card {
@@ -246,12 +245,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0;
         }
         .mode-toggle:hover {
             background: rgba(255, 215, 0, 0.9);
             transform: scale(1.12) rotate(15deg);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
         }
         .mode-toggle svg {
             width: 26px;
@@ -262,9 +259,7 @@
             transform: rotate(360deg);
         }
 
-        /* 响应式微调 */
         @media (max-width: 480px) {
-            .tile img { width: 50px; height: 50px; }
             .tile-title { font-size: 15px; }
             .tile-desc { font-size: 12px; }
         }
@@ -284,46 +279,52 @@
         防止掉失！购买影片前先注册
     </div>
 
-    <!-- 磁贴导航（长方形拉满） -->
+    <!-- 磁贴导航（图片拉满） -->
     <div class="tiles-container">
-        <a href="https://l6k0z7n2y7s9z8m4v4i9.cc/?channel=6d530728c0583d8037db5bd8e9e6ea52" target="_blank" class="tile google">
-            <img src="images11.jpg" alt="Ai脱衣">
-            <div class="tile-title">Ai脱衣</div>
-            <div class="tile-desc">AI智能去衣<br>满足你的性幻想！</div>
+        <a href="https://l6k0z7n2y7s9z8m4v4i9.cc/?channel=6d530728c0583d8037db5bd8e9e6ea52" target="_blank" class="tile" style="--bg: url('images11.jpg')">
+            <div class="tile-content">
+                <div class="tile-title">Ai脱衣</div>
+                <div class="tile-desc">AI智能去衣<br>秒变艺术照！</div>
+            </div>
         </a>
 
-        <a href="http://wv24.icu" target="_blank" class="tile baidu">
-            <img src="images12.jpg" alt="幼女萝莉">
-            <div class="tile-title">幼女萝莉</div>
-            <div class="tile-desc">高清萝莉资源<br>分类清晰</div>
+        <a href="http://wv24.icu" target="_blank" class="tile" style="--bg: url('images12.jpg')">
+            <div class="tile-content">
+                <div class="tile-title">幼女萝莉</div>
+                <div class="tile-desc">高清萝莉资源<br>分类清晰</div>
+            </div>
         </a>
 
-        <a href="http://avaw.cc" target="_blank" class="tile youku">
-            <img src="images3.jpg" alt="直播">
-            <div class="tile-title">真人直播</div>
-            <div class="tile-desc">24小时真人<br>互动强</div>
+        <a href="http://avaw.cc" target="_blank" class="tile" style="--bg: url('images3.jpg')">
+            <div class="tile-content">
+                <div class="tile-title">真人直播</div>
+                <div class="tile-desc">24小时真人<br>互动强</div>
+            </div>
         </a>
 
-        <a href="http://se678.top" target="_blank" class="tile taobao">
-            <img src="images4.jpg" alt="咸湿视频">
-            <div class="tile-title">咸湿视频</div>
-            <div class="tile-desc">人兽/欧美/亚洲<br>应有尽有</div>
+        <a href="http://se678.top" target="_blank" class="tile" style="--bg: url('images4.jpg')">
+            <div class="tile-content">
+                <div class="tile-title">咸湿视频</div>
+                <div class="tile-desc">人兽/欧美/亚洲<br>应有尽有</div>
+            </div>
         </a>
 
-        <a href="https://www.hpluk7.vip:6001/entry/register52073/?i_code=27936549" target="_blank" class="tile jd">
-            <img src="images1.jpg" alt="开云体育">
-            <div class="tile-title">开云体育</div>
-            <div class="tile-desc">全球赛事直播<br>实时投注</div>
+        <a href="https://www.hpluk7.vip:6001/entry/register52073/?i_code=27936549" target="_blank" class="tile" style="--bg: url('images1.jpg')">
+            <div class="tile-content">
+                <div class="tile-title">开云体育</div>
+                <div class="tile-desc">全球赛事直播<br>实时投注</div>
+            </div>
         </a>
 
-        <a href="http://42.51.43.192:25504?Tesla=NjAwNDMz" target="_blank" class="tile amazon">
-            <img src="images2.jpg" alt="欧亚国际">
-            <div class="tile-title">欧亚国际</div>
-            <div class="tile-desc">实体娱乐城<br>尊贵体验</div>
+        <a href="http://42.51.43.192:25504?Tesla=NjAwNDMz" target="_blank" class="tile" style="--bg: url('images2.jpg')">
+            <div class="tile-content">
+                <div class="tile-title">欧亚国际</div>
+                <div class="tile-desc">实体娱乐城<br>尊贵体验</div>
+            </div>
         </a>
     </div>
 
-    <!-- 个人简介 + 动态签名（已删除访问计数） -->
+    <!-- 个人简介 -->
     <div class="profile-card">
         <div class="profile-avatar">
             <img src="avatar.jpg" alt="站长头像">
@@ -332,7 +333,7 @@
             <h3>小黑巷站长</h3>
             <p>欢迎来到小黑巷！这里是你深夜的秘密花园</p>
             <p>每日更新最新资源，专注分享不为人知的快乐</p>
-            <p>💗💗💗💗💗💗</p>
+            <p>有问题？留言或联系站长，24小时在线</p>
             <p class="signature" id="signature"></p>
         </div>
     </div>
@@ -345,14 +346,15 @@
     </button>
 
     <script>
+        // 动态背景图
+        document.querySelectorAll('.tile').forEach(tile => {
+            const bg = tile.style.getPropertyValue('--bg');
+            tile.style.setProperty('--tile-bg', bg);
+            tile.querySelector('.tile-content').style.background = 'linear-gradient(transparent, rgba(0,0,0,0.7))';
+        });
+
         // 动态签名
-        const signatures = [
-            "深夜不打烊，快乐不停歇",
-            "资源每日更新，质量有保证",
-            "注册后享永久观看权限",
-            "一个人的快乐，由我来守护",
-            "小黑巷，懂你的夜"
-        ];
+        const signatures = ["深夜不打烊，快乐不停歇","资源每日更新，质量有保证","注册后享永久观看权限","一个人的快乐，由我来守护","小黑巷，懂你的夜"];
         let sigIndex = 0;
         const sigEl = document.getElementById('signature');
         function changeSignature() {
@@ -371,7 +373,6 @@
         const icon = document.getElementById('mode-icon');
         const moonPath = "M21.64 13a1 1 0 0 1-1 .89 8.05 8.05 0 1 1-8.94-8.94 1 1 0 0 1 .9 1.75A6.06 6.06 0 1 0 18.75 19a1 1 0 0 1 1.9.36 8 8 0 0 1 1-6.36z";
         const sunPath = "M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-7v2a1 1 0 1 1-2 0V0a1 1 0 1 1 2 0zm0 22v-2a1 1 0 1 1-2 0v2a1 1 0 1 1 2 0zm10-10h-2a1 1 0 1 1 0-2h2a1 1 0 1 1 0 2zM2 12h2a1 1 0 1 1 0 2H2a1 1 0 1 1 0-2zm17.66-6.34l-1.42 1.42a1 1 0 1 1-1.42-1.42l1.42-1.42a1 1 0 1 1 1.42 1.42zm-11.32 0a1 1 0 0 1 0 1.42l-1.42 1.42a1 1 0 1 1-1.42-1.42l1.42-1.42a1 1 0 0 1 1.42 0zm11.32 12.68a1 1 0 0 1 0-1.42l1.42-1.42a1 1 0 1 1 1.42 1.42l-1.42 1.42a1 1 0 0 1-1.42 0zm-11.32 0a1 1 0 0 1-1.42 0l-1.42-1.42a1 1 0 1 1 1.42-1.42l1.42 1.42a1 1 0 0 1 0 1.42z";
-
         modeBtn.addEventListener('click', () => {
             document.body.classList.toggle('dark');
             document.body.classList.toggle('light');
@@ -382,6 +383,12 @@
                 icon.innerHTML = `<path d="${moonPath}"/>`;
                 modeBtn.title = '切换到亮白模式';
             }
+        });
+
+        // 应用背景图
+        document.querySelectorAll('.tile').forEach(tile => {
+            const bg = tile.style.getPropertyValue('--bg');
+            tile.style.backgroundImage = bg;
         });
     </script>
 
