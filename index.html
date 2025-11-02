@@ -32,8 +32,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: "Microsoft YaHei", Arial, sans-serif;
-            background: url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
-            background-size: cover;
+            background: #000 url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover fixed;
             color: #fff;
             min-height: 100vh;
             position: relative;
@@ -43,18 +42,16 @@
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
             z-index: 1;
-            transition: background 0.6s ease;
         }
 
-        /* 暗黑模式 */
-        body.dark::before { background: rgba(0, 0, 0, 0.85); }
+        /* 暗黑/亮白模式 */
+        body.dark::before { background: rgba(0, 0, 0, 0.9); }
         body.light { 
-            background: url('https://images.unsplash.com/photo-1492011221367-f47e3ccd77a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
-            background-size: cover;
+            background: #f0f8ff url('https://images.unsplash.com/photo-1492011221367-f47e3ccd77a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover fixed;
         }
-        body.light::before { background: rgba(255, 255, 255, 0.75); }
+        body.light::before { background: rgba(255, 255, 255, 0.8); }
 
         /* 滑动公告 */
         .announcement {
@@ -101,7 +98,7 @@
             padding: 20px;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            gap: 18px;
             max-width: 1000px;
             margin: 0 auto;
         }
@@ -109,12 +106,11 @@
             .tiles-container { grid-template-columns: repeat(3, 1fr); }
         }
 
-        /* 磁贴：渐变背景 + 图片背景 */
+        /* 彩色渐变磁贴 */
         .tile {
-            position: relative;
-            border-radius: 16px;
+            border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
             transition: transform 0.3s, box-shadow 0.3s;
             cursor: pointer;
             text-decoration: none;
@@ -125,29 +121,27 @@
             align-items: center;
             padding: 20px 16px;
             min-height: 160px;
-            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
             text-align: center;
+            position: relative;
         }
         .tile:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 16px 32px rgba(0,0,0,0.45);
+            transform: translateY(-6px);
+            box-shadow: 0 16px 32px rgba(0,0,0,0.5);
         }
 
-        /* 图片作为背景，30px 居中 */
-        .tile::before {
-            content: '';
-            width: 30px;
-            height: 30px;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+        /* 图片：48px + 圆角 + 白边 */
+        .tile img {
+            width: 48px;
+            height: 48px;
+            border-radius: 16px;
             margin-bottom: 12px;
-            border-radius: 8px;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+            object-fit: cover;
+            border: 3px solid rgba(255,255,255,0.8);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
             transition: transform 0.3s ease;
         }
-        .tile:hover::before {
-            transform: scale(1.2);
+        .tile:hover img {
+            transform: scale(1.1);
         }
 
         .tile-title {
@@ -160,10 +154,18 @@
             font-size: 13px;
             color: #eee;
             line-height: 1.4;
-            opacity: 0.92;
+            opacity: 0.95;
         }
 
-        /* 个人简介卡片 */
+        /* 每个磁贴独立渐变 */
+        .tile:nth-child(1) { background: linear-gradient(135deg, #00d2ff, #3a7bd5); }
+        .tile:nth-child(2) { background: linear-gradient(135deg, #667eea, #764ba2); }
+        .tile:nth-child(3) { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .tile:nth-child(4) { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .tile:nth-child(5) { background: linear-gradient(135deg, #ff9a9e, #fad0c4); }
+        .tile:nth-child(6) { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+
+        /* 个人简介 */
         .profile-card {
             position: relative;
             z-index: 10;
@@ -171,8 +173,8 @@
             margin: 20px auto;
             padding: 20px;
             background: rgba(255, 255, 255, 0.15);
-            border-radius: 12px;
-            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.3);
             display: flex;
             align-items: center;
@@ -185,7 +187,7 @@
             height: 90px;
             border-radius: 50%;
             overflow: hidden;
-            border: 4px solid rgba(255, 255, 255, 0.4);
+            border: 4px solid rgba(255, 255, 255, 0.5);
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
         .profile-avatar img {
@@ -193,15 +195,10 @@
             height: 100%;
             object-fit: cover;
         }
-        .profile-info {
-            flex: 1;
-            min-width: 250px;
-        }
         .profile-info h3 {
             margin: 0 0 8px;
             font-size: 20px;
             color: #ffd700;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
         }
         .profile-info p {
             margin: 4px 0;
@@ -223,7 +220,7 @@
             to { opacity: 1; }
         }
 
-        /* SVG 模式切换按钮 */
+        /* 模式切换按钮 */
         .mode-toggle {
             position: fixed;
             bottom: 25px;
@@ -257,7 +254,7 @@
         }
 
         @media (max-width: 480px) {
-            .tile::before { width: 28px; height: 28px; }
+            .tile img { width: 42px; height: 42px; }
             .tile-title { font-size: 15px; }
             .tile-desc { font-size: 12px; }
         }
@@ -277,34 +274,40 @@
         防止掉失！购买影片前先注册
     </div>
 
-    <!-- 磁贴导航（背景渐变 + 30px 图片） -->
+    <!-- 彩色磁贴导航 -->
     <div class="tiles-container">
-        <a href="https://l6k0z7n2y7s9z8m4v4i9.cc/?channel=6d530728c0583d8037db5bd8e9e6ea52" target="_blank" class="tile" style="--img: url('images11.jpg');">
+        <a href="https://l6k0z7n2y7s9z8m4v4i9.cc/?channel=6d530728c0583d8037db5bd8e9e6ea52" target="_blank" class="tile">
+            <img src="images11.jpg" alt="Ai脱衣">
             <div class="tile-title">Ai脱衣</div>
             <div class="tile-desc">AI智能去衣<br>满足你的性幻想！</div>
         </a>
 
-        <a href="http://wv24.icu" target="_blank" class="tile" style="--img: url('images12.jpg');">
+        <a href="http://wv24.icu" target="_blank" class="tile">
+            <img src="images12.jpg" alt="幼女萝莉">
             <div class="tile-title">幼女萝莉</div>
             <div class="tile-desc">高清萝莉资源<br>分类清晰</div>
         </a>
 
-        <a href="http://avaw.cc" target="_blank" class="tile" style="--img: url('images3.jpg');">
+        <a href="http://avaw.cc" target="_blank" class="tile">
+            <img src="images3.jpg" alt="真人直播">
             <div class="tile-title">真人直播</div>
             <div class="tile-desc">24小时真人<br>互动强</div>
         </a>
 
-        <a href="http://se678.top" target="_blank" class="tile" style="--img: url('images4.jpg');">
+        <a href="http://se678.top" target="_blank" class="tile">
+            <img src="images4.jpg" alt="咸湿视频">
             <div class="tile-title">咸湿视频</div>
             <div class="tile-desc">人兽/欧美/亚洲<br>应有尽有</div>
         </a>
 
-        <a href="https://www.iawrq2.vip:9103/entry/register14330/?i_code=27936549" target="_blank" class="tile" style="--img: url('images1.jpg');">
+        <a href="https://www.iawrq2.vip:9103/entry/register14330/?i_code=27936549" target="_blank" class="tile">
+            <img src="images1.jpg" alt="开云体育">
             <div class="tile-title">开云体育</div>
             <div class="tile-desc">全球赛事直播<br>实时投注</div>
         </a>
 
-        <a href="http://42.51.43.192:25504?Tesla=NjAwNDMz" target="_blank" class="tile" style="--img: url('images2.jpg');">
+        <a href="http://42.51.43.192:25504?Tesla=NjAwNDMz" target="_blank" class="tile">
+            <img src="images2.jpg" alt="欧亚国际">
             <div class="tile-title">欧亚国际</div>
             <div class="tile-desc">实体娱乐城<br>尊贵体验</div>
         </a>
@@ -324,21 +327,14 @@
         </div>
     </div>
 
-    <!-- SVG 模式切换按钮 -->
+    <!-- 模式切换 -->
     <button class="mode-toggle" id="mode-toggle" title="切换到亮白模式">
-        <svg id="mode-icon" viewBox="0 0 24 24" width="26" height="26" fill="currentColor">
+        <svg id="mode-icon" viewBox="0 0 24 24" fill="currentColor">
             <path d="M21.64 13a1 1 0 0 1-1 .89 8.05 8.05 0 1 1-8.94-8.94 1 1 0 0 1 .9 1.75A6.06 6.06 0 1 0 18.75 19a1 1 0 0 1 1.9.36 8 8 0 0 1 1-6.36z"/>
         </svg>
     </button>
 
     <script>
-        // 应用图片背景
-        document.querySelectorAll('.tile').forEach(tile => {
-            const imgUrl = tile.style.getPropertyValue('--img');
-            tile.style.setProperty('--tile-img', imgUrl);
-            tile.querySelector('::before')?.style && (tile.querySelector('::before').style.backgroundImage = imgUrl);
-        });
-
         // 动态签名
         const signatures = ["深夜不打烊，快乐不停歇","资源每日更新，质量有保证","注册后享永久观看权限","一个人的快乐，由我来守护","小黑巷，懂你的夜"];
         let sigIndex = 0;
@@ -354,7 +350,7 @@
         changeSignature();
         setInterval(changeSignature, 8000);
 
-        // SVG 图标切换
+        // 模式切换
         const modeBtn = document.getElementById('mode-toggle');
         const icon = document.getElementById('mode-icon');
         const moonPath = "M21.64 13a1 1 0 0 1-1 .89 8.05 8.05 0 1 1-8.94-8.94 1 1 0 0 1 .9 1.75A6.06 6.06 0 1 0 18.75 19a1 1 0 0 1 1.9.36 8 8 0 0 1 1-6.36z";
@@ -370,21 +366,7 @@
                 modeBtn.title = '切换到亮白模式';
             }
         });
-
-        // 关键：应用图片到 ::before
-        document.querySelectorAll('.tile').forEach(tile => {
-            const img = tile.style.getPropertyValue('--img').trim();
-            const clean = img.replace(/^url\(['"]?/, '').replace(/['"]?\)$/, '');
-            tile.style.setProperty('--tile-img', `url('${clean}')`);
-        });
     </script>
-
-    <style>
-        /* 动态应用背景图 */
-        .tile::before {
-            background-image: var(--tile-img);
-        }
-    </style>
 
 </body>
 </html>
