@@ -109,9 +109,8 @@
             .tiles-container { grid-template-columns: repeat(3, 1fr); }
         }
 
-        /* 图片拉满磁贴 */
+        /* 磁贴：上半图 + 下半文字 */
         .tile {
-            position: relative;
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 6px 16px rgba(0,0,0,0.35);
@@ -119,52 +118,50 @@
             cursor: pointer;
             text-decoration: none;
             color: white;
-            min-height: 160px;
-            background: #000;
+            display: flex;
+            flex-direction: column;
+            height: 180px;
+            background: #1a1a1a;
         }
         .tile:hover {
             transform: translateY(-8px);
             box-shadow: 0 16px 32px rgba(0,0,0,0.45);
         }
 
-        .tile::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+        /* 上半部分：图片 */
+        .tile-img {
+            height: 50%;
             background-size: cover;
             background-position: center;
-            z-index: 1;
             transition: transform 0.4s ease;
-            filter: brightness(0.9) contrast(1.1);
         }
-        .tile:hover::before {
+        .tile:hover .tile-img {
             transform: scale(1.08);
         }
 
+        /* 下半部分：文字 */
         .tile-content {
-            position: relative;
-            z-index: 2;
-            height: 100%;
+            height: 50%;
+            padding: 12px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 16px;
-            text-align: center;
-            background: linear-gradient(transparent, rgba(0,0,0,0.6));
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
         }
-
         .tile-title {
             font-weight: bold;
-            font-size: 17px;
-            margin-bottom: 6px;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+            font-size: 16px;
+            margin-bottom: 4px;
+            color: #ffd700;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.6);
         }
         .tile-desc {
-            font-size: 13px;
+            font-size: 12px;
+            color: #eee;
+            text-align: center;
             line-height: 1.4;
-            opacity: 0.95;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.7);
         }
 
         /* 个人简介卡片 */
@@ -205,7 +202,6 @@
             margin: 0 0 8px;
             font-size: 20px;
             color: #ffd700;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
         }
         .profile-info p {
             margin: 4px 0;
@@ -261,8 +257,8 @@
         }
 
         @media (max-width: 480px) {
-            .tile-title { font-size: 15px; }
-            .tile-desc { font-size: 12px; }
+            .tile-title { font-size: 14px; }
+            .tile-desc { font-size: 11px; }
         }
     </style>
 </head>
@@ -280,44 +276,50 @@
         防止掉失！购买影片前先注册
     </div>
 
-    <!-- 磁贴导航（图片拉满） -->
+    <!-- 磁贴导航（上半图 + 下半文字） -->
     <div class="tiles-container">
-        <a href="https://l6k0z7n2y7s9z8m4v4i9.cc/?channel=6d530728c0583d8037db5bd8e9e6ea52" target="_blank" class="tile" style="--bg: url('images11.jpg')">
+        <a href="https://l6k0z7n2y7s9z8m4v4i9.cc/?channel=6d530728c0583d8037db5bd8e9e6ea52" target="_blank" class="tile">
+            <div class="tile-img" style="background-image: url('images11.jpg');"></div>
             <div class="tile-content">
                 <div class="tile-title">Ai脱衣</div>
                 <div class="tile-desc">AI智能去衣<br>满足你的性幻想！</div>
             </div>
         </a>
 
-        <a href="http://wv24.icu" target="_blank" class="tile" style="--bg: url('images12.jpg')">
+        <a href="http://wv24.icu" target="_blank" class="tile">
+            <div class="tile-img" style="background-image: url('images12.jpg');"></div>
             <div class="tile-content">
                 <div class="tile-title">幼女萝莉</div>
                 <div class="tile-desc">高清萝莉资源<br>分类清晰</div>
             </div>
         </a>
 
-        <a href="http://avaw.cc" target="_blank" class="tile" style="--bg: url('images3.jpg')">
+        <a href="http://avaw.cc" target="_blank" class="tile">
+            <div class="tile-img" style="background-image: url('images3.jpg');"></div>
             <div class="tile-content">
                 <div class="tile-title">真人直播</div>
                 <div class="tile-desc">24小时真人<br>互动强</div>
             </div>
         </a>
 
-        <a href="http://se678.top" target="_blank" class="tile" style="--bg: url('images4.jpg')">
+        <a href="http://se678.top" target="_blank" class="tile">
+            <div class="tile-img" style="background-image: url('images4.jpg');"></div>
             <div class="tile-content">
                 <div class="tile-title">咸湿视频</div>
                 <div class="tile-desc">人兽/欧美/亚洲<br>应有尽有</div>
             </div>
         </a>
 
-        <a href="https://www.hpluk7.vip:6001/entry/register52073/?i_code=27936549" target="_blank" class="tile" style="--bg: url('images1.jpg')">
+        <a href="https://www.iawrq2.vip:9103/entry/register14330/?i_code=27936549" target="_blank" class="tile">
+            <div class="tile-img" style="background-image: url('images1.jpg');"></div>
             <div class="tile-content">
                 <div class="tile-title">开云体育</div>
                 <div class="tile-desc">全球赛事直播<br>实时投注</div>
             </div>
         </a>
 
-        <a href="http://42.51.43.192:25504?Tesla=NjAwNDMz" target="_blank" class="tile" style="--bg: url('images2.jpg')">
+        <a href="http://42.51.43.192:25504?Tesla=NjAwNDMz" target="_blank" class="tile">
+            <div class="tile-img" style="background-image: url('images2.jpg');"></div>
             <div class="tile-content">
                 <div class="tile-title">欧亚国际</div>
                 <div class="tile-desc">实体娱乐城<br>尊贵体验</div>
@@ -347,13 +349,6 @@
     </button>
 
     <script>
-        // 应用背景图（修复版）
-        document.querySelectorAll('.tile').forEach(tile => {
-            const bgUrl = tile.style.getPropertyValue('--bg').trim();
-            const cleanUrl = bgUrl.replace(/^url\(['"]?/, '').replace(/['"]?\)$/, '');
-            tile.style.backgroundImage = `url('${cleanUrl}')`;
-        });
-
         // 动态签名
         const signatures = ["深夜不打烊，快乐不停歇","资源每日更新，质量有保证","注册后享永久观看权限","一个人的快乐，由我来守护","小黑巷，懂你的夜"];
         let sigIndex = 0;
