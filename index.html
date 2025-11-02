@@ -324,10 +324,10 @@
             document.body.classList.toggle('dark');
             document.body.classList.toggle('light');
             if (document.body.classList.contains('light')) {
-                modeBtn.textContent = '白/黑模式';
+                modeBtn.textContent = '白天模式';
                 modeBtn.title = '切换到暗黑模式';
             } else {
-                modeBtn.textContent = '音乐播放';
+                modeBtn.textContent = '黑夜模式';
                 modeBtn.title = '切换到亮白模式';
             }
         });
@@ -339,13 +339,13 @@
         musicBtn.addEventListener('click', () => {
             if (isPlaying) {
                 audio.pause();
-                musicBtn.textContent = 'Play Music';
+                musicBtn.textContent = '播放音乐';
                 musicBtn.title = '播放音乐';
             } else {
                 audio.play().catch(() => {
                     alert('音乐播放需要用户交互，请点击页面后再试');
                 });
-                musicBtn.textContent = 'Pause Music';
+                musicBtn.textContent = '暂停音乐';
                 musicBtn.title = '暂停音乐';
             }
             isPlaying = !isPlaying;
