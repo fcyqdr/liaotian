@@ -23,10 +23,6 @@
     document.write("<sc"+"ript type='text/javascript' src='" + scJsHost+
     "statcounter.com/counter/counter.js'></"+"script>");
     </script>
-    <noscript><div class="statcounter"><a title="Web Analytics"
-    href="https://statcounter.com/" target="_blank"><img class="statcounter"
-    src="https://c.statcounter.com/13180843/0/f4187e06/0/" alt="Web Analytics"
-    referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -106,7 +102,7 @@
             .tiles-container { grid-template-columns: repeat(3, 1fr); }
         }
 
-        /* 真正流动的渐变磁贴 */
+        /* 彩虹流动磁贴（流速可调） */
         .tile {
             border-radius: 32px;
             overflow: hidden;
@@ -125,14 +121,13 @@
             position: relative;
             background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
             background-size: 400% 400%;
-            animation: rainbowFlow 6s ease infinite;
+            animation: rainbowFlow var(--flow-speed, 6s) ease infinite;
         }
         .tile:hover {
             transform: translateY(-10px);
             box-shadow: 0 24px 48px rgba(0,0,0,0.55);
         }
 
-        /* 彩虹流动动画（超明显！） */
         @keyframes rainbowFlow {
             0%   { background-position: 0% 50%; }
             50%  { background-position: 100% 50%; }
@@ -147,7 +142,7 @@
         .tile:nth-child(5) { animation-delay: 2s; }
         .tile:nth-child(6) { animation-delay: 2.5s; }
 
-        /* 图片：80px + 白边 + 悬停放大 */
+        /* 图片 */
         .tile img {
             width: 80px;
             height: 80px;
@@ -288,39 +283,45 @@
         防止掉失！购买影片前先注册
     </div>
 
-    <!-- 彩虹流动磁贴（80px 大图） -->
+    <!-- 彩虹流动磁贴（80px + 流速可调） -->
     <div class="tiles-container">
-        <a href="https://l6k0z7n2y7s9z8m4v4i9.cc/?channel=6d530728c0583d8037db5bd8e9e6ea52" target="_blank" class="tile">
+        <!-- 例子：极快流速 -->
+        <a href="https://l6k0z7n2y7s9z8m4v4i9.cc/?channel=6d530728c0583d8037db5bd8e9e6ea52" target="_blank" class="tile" style="--flow-speed: 2s;">
             <img src="images11.jpg" alt="Ai脱衣">
             <div class="tile-title">Ai脱衣</div>
             <div class="tile-desc">AI智能去衣<br>满足你的性幻想！</div>
         </a>
 
-        <a href="http://wv24.icu" target="_blank" class="tile">
+        <!-- 例子：快速流速 -->
+        <a href="http://wv24.icu" target="_blank" class="tile" style="--flow-speed: 4s;">
             <img src="images12.jpg" alt="幼女萝莉">
             <div class="tile-title">幼女萝莉</div>
             <div class="tile-desc">高清萝莉资源<br>分类清晰</div>
         </a>
 
+        <!-- 例子：默认流速 -->
         <a href="http://avaw.cc" target="_blank" class="tile">
             <img src="images3.jpg" alt="真人直播">
             <div class="tile-title">真人直播</div>
             <div class="tile-desc">24小时真人<br>互动强</div>
         </a>
 
-        <a href="http://se678.top" target="_blank" class="tile">
+        <!-- 例子：缓慢流速 -->
+        <a href="http://se678.top" target="_blank" class="tile" style="--flow-speed: 10s;">
             <img src="images4.jpg" alt="咸湿视频">
             <div class="tile-title">咸湿视频</div>
             <div class="tile-desc">人兽/欧美/亚洲<br>应有尽有</div>
         </a>
 
-        <a href="https://www.iawrq2.vip:9103/entry/register14330/?i_code=27936549" target="_blank" class="tile">
+        <!-- 例子：超慢流速 -->
+        <a href="https://www.iawrq2.vip:9103/entry/register14330/?i_code=27936549" target="_blank" class="tile" style="--flow-speed: 15s;">
             <img src="images1.jpg" alt="开云体育">
             <div class="tile-title">开云体育</div>
             <div class="tile-desc">全球赛事直播<br>实时投注</div>
         </a>
 
-        <a href="http://42.51.43.192:25504?Tesla=NjAwNDMz" target="_blank" class="tile">
+        <!-- 例子：自定义流速 -->
+        <a href="http://42.51.43.192:25504?Tesla=NjAwNDMz" target="_blank" class="tile" style="--flow-speed: 8s;">
             <img src="images2.jpg" alt="欧亚国际">
             <div class="tile-title">欧亚国际</div>
             <div class="tile-desc">实体娱乐城<br>尊贵体验</div>
@@ -339,7 +340,7 @@
             <p>Heart Heart Heart Heart Heart Heart</p>
             <p class="signature" id="signature"></p>
         </div>
-        </div>
+    </div>
 
     <!-- 模式切换 -->
     <button class="mode-toggle" id="mode-toggle" title="切换到亮白模式">
