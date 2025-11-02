@@ -99,7 +99,7 @@
             padding: 20px;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 18px;
+            gap: 20px;
             max-width: 1000px;
             margin: 0 auto;
         }
@@ -107,11 +107,11 @@
             .tiles-container { grid-template-columns: repeat(3, 1fr); }
         }
 
-        /* 彩色渐变磁贴 */
+        /* 流动渐变磁贴 */
         .tile {
-            border-radius: 28px;
+            border-radius: 32px;
             overflow: hidden;
-            box-shadow: 0 10px 24px rgba(0,0,0,0.4);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.45);
             transition: transform 0.3s, box-shadow 0.3s;
             cursor: pointer;
             text-decoration: none;
@@ -120,51 +120,63 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 22px 16px;
-            min-height: 170px;
+            padding: 28px 18px;
+            min-height: 190px;
             text-align: center;
             position: relative;
+            background-size: 200% 200%;
+            animation: flow 8s ease infinite;
         }
         .tile:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            transform: translateY(-10px);
+            box-shadow: 0 24px 48px rgba(0,0,0,0.55);
         }
 
-        /* 图片：60px + 圆角 + 白边 */
+        /* 流动动画关键帧 */
+        @keyframes flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* 图片：80px + 圆角 + 白边 */
         .tile img {
-            width: 60px;
-            height: 60px;
-            border-radius: 20px;
-            margin-bottom: 14px;
+            width: 80px;
+            height: 80px;
+            border-radius: 24px;
+            margin-bottom: 16px;
             object-fit: cover;
-            border: 4px solid rgba(255,255,255,0.9);
-            box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+            border: 5px solid rgba(255,255,255,0.95);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
             transition: transform 0.3s ease;
+            z-index: 2;
         }
         .tile:hover img {
-            transform: scale(1.12);
+            transform: scale(1.15);
         }
 
         .tile-title {
             font-weight: bold;
-            font-size: 18px;
+            font-size: 19px;
             margin-bottom: 6px;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+            text-shadow: 0 1px 4px rgba(0,0,0,0.7);
+            z-index: 2;
         }
         .tile-desc {
-            font-size: 13.5px;
-            color: #f0f0f0;
-            line-height: 1.45;
-            opacity: 0.95;
+            font-size: 14px;
+            color: #f8f8f8;
+            line-height: 1.5;
+            opacity: 0.96;
+            z-index: 2;
         }
 
-        /* 每个磁贴独立渐变 */
-        .tile:nth-child(1) { background: linear-gradient(135deg, #00c6ff, #0072ff); }
-        .tile:nth-child(2) { background: linear-gradient(135deg, #8e2de2, #4a00e0); }
-        .tile:nth-child(3) { background: linear-gradient(135deg, #ff6ec4, #7873f5); }
-        .tile:nth-child(4) { background: linear-gradient(135deg, #43cea2, #185a9d); }
-        .tile:nth-child(5) { background: linear-gradient(135deg, #ff9a9e, #fecfef); }
-        .tile:nth-child(6) { background: linear-gradient(135deg, #a8edea, #fed6e3); }
+        /* 每个磁贴独立流动渐变 */
+        .tile:nth-child(1) { background: linear-gradient(135deg, #00c6ff, #0072ff, #00c6ff); }
+        .tile:nth-child(2) { background: linear-gradient(135deg, #8e2de2, #4a00e0, #8e2de2); animation-delay: 1s; }
+        .tile:nth-child(3) { background: linear-gradient(135deg, #ff6ec4, #7873f5, #ff6ec4); animation-delay: 2s; }
+        .tile:nth-child(4) { background: linear-gradient(135deg, #43cea2, #185a9d, #43cea2); animation-delay: 3s; }
+        .tile:nth-child(5) { background: linear-gradient(135deg, #ff9a9e, #fecfef, #ff9a9e); animation-delay: 4s; }
+        .tile:nth-child(6) { background: linear-gradient(135deg, #a8edea, #fed6e3, #a8edea); animation-delay: 5s; }
 
         /* 个人简介 */
         .profile-card {
@@ -255,10 +267,10 @@
         }
 
         @media (max-width: 480px) {
-            .tile img { width: 52px; height: 52px; }
-            .tile-title { font-size: 16px; }
-            .tile-desc { font-size: 12.5px; }
-            .tile { padding: 18px 14px; min-height: 155px; }
+            .tile img { width: 68px; height: 68px; }
+            .tile-title { font-size: 17px; }
+            .tile-desc { font-size: 13px; }
+            .tile { padding: 22px 16px; min-height: 175px; }
         }
     </style>
 </head>
@@ -276,7 +288,7 @@
         防止掉失！购买影片前先注册
     </div>
 
-    <!-- 彩色磁贴导航（图片60px） -->
+    <!-- 流动渐变磁贴（80px 大图） -->
     <div class="tiles-container">
         <a href="https://l6k0z7n2y7s9z8m4v4i9.cc/?channel=6d530728c0583d8037db5bd8e9e6ea52" target="_blank" class="tile">
             <img src="images11.jpg" alt="Ai脱衣">
