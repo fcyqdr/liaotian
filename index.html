@@ -109,8 +109,9 @@
             .tiles-container { grid-template-columns: repeat(3, 1fr); }
         }
 
-        /* 磁贴：上半图 + 下半文字 */
+        /* 长方形磁贴 */
         .tile {
+            position: relative;
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 6px 16px rgba(0,0,0,0.35);
@@ -120,48 +121,43 @@
             color: white;
             display: flex;
             flex-direction: column;
-            height: 180px;
-            background: #1a1a1a;
+             justify-content: center;
+            align-items: center;
+            padding: 20px 16px;
+            min-height: 160px;
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            text-align: center;
         }
         .tile:hover {
             transform: translateY(-8px);
             box-shadow: 0 16px 32px rgba(0,0,0,0.45);
         }
 
-        /* 上半部分：图片 */
-        .tile-img {
-            height: 50%;
-            background-size: cover;
-            background-position: center;
-            transition: transform 0.4s ease;
+        /* 图片放大 20% */
+        .tile img {
+            width: 72px;     /* 原60px → 72px */
+            height: 72px;    /* 原60px → 72px */
+            margin-bottom: 14px;
+            filter: drop-shadow(0 3px 6px rgba(0,0,0,0.4));
+            border-radius: 12px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
         }
-        .tile:hover .tile-img {
-            transform: scale(1.08);
+        .tile:hover img {
+            transform: scale(1.15);
         }
 
-        /* 下半部分：文字 */
-        .tile-content {
-            height: 50%;
-            padding: 12px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(8px);
-        }
         .tile-title {
             font-weight: bold;
-            font-size: 16px;
-            margin-bottom: 4px;
-            color: #ffd700;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+            font-size: 17px;
+            margin-bottom: 6px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.6);
         }
         .tile-desc {
-            font-size: 12px;
+            font-size: 13px;
             color: #eee;
-            text-align: center;
             line-height: 1.4;
+            opacity: 0.92;
         }
 
         /* 个人简介卡片 */
@@ -202,6 +198,7 @@
             margin: 0 0 8px;
             font-size: 20px;
             color: #ffd700;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
         }
         .profile-info p {
             margin: 4px 0;
@@ -257,8 +254,9 @@
         }
 
         @media (max-width: 480px) {
-            .tile-title { font-size: 14px; }
-            .tile-desc { font-size: 11px; }
+            .tile img { width: 60px; height: 60px; }
+            .tile-title { font-size: 15px; }
+            .tile-desc { font-size: 12px; }
         }
     </style>
 </head>
@@ -276,54 +274,42 @@
         防止掉失！购买影片前先注册
     </div>
 
-    <!-- 磁贴导航（上半图 + 下半文字） -->
+    <!-- 磁贴导航（原始风格 + 图片放大） -->
     <div class="tiles-container">
         <a href="https://l6k0z7n2y7s9z8m4v4i9.cc/?channel=6d530728c0583d8037db5bd8e9e6ea52" target="_blank" class="tile">
-            <div class="tile-img" style="background-image: url('images11.jpg');"></div>
-            <div class="tile-content">
-                <div class="tile-title">Ai脱衣</div>
-                <div class="tile-desc">AI智能去衣<br>满足你的性幻想！</div>
-            </div>
+            <img src="images11.jpg" alt="Ai脱衣">
+            <div class="tile-title">Ai脱衣</div>
+            <div class="tile-desc">AI智能去衣<br>满足你的性幻想！</div>
         </a>
 
         <a href="http://wv24.icu" target="_blank" class="tile">
-            <div class="tile-img" style="background-image: url('images12.jpg');"></div>
-            <div class="tile-content">
-                <div class="tile-title">幼女萝莉</div>
-                <div class="tile-desc">高清萝莉资源<br>分类清晰</div>
-            </div>
+            <img src="images12.jpg" alt="幼女萝莉">
+            <div class="tile-title">幼女萝莉</div>
+            <div class="tile-desc">高清萝莉资源<br>分类清晰</div>
         </a>
 
         <a href="http://avaw.cc" target="_blank" class="tile">
-            <div class="tile-img" style="background-image: url('images3.jpg');"></div>
-            <div class="tile-content">
-                <div class="tile-title">真人直播</div>
-                <div class="tile-desc">24小时真人<br>互动强</div>
-            </div>
+            <img src="images3.jpg" alt="直播">
+            <div class="tile-title">真人直播</div>
+            <div class="tile-desc">24小时真人<br>互动强</div>
         </a>
 
         <a href="http://se678.top" target="_blank" class="tile">
-            <div class="tile-img" style="background-image: url('images4.jpg');"></div>
-            <div class="tile-content">
-                <div class="tile-title">咸湿视频</div>
-                <div class="tile-desc">人兽/欧美/亚洲<br>应有尽有</div>
-            </div>
+            <img src="images4.jpg" alt="咸湿视频">
+            <div class="tile-title">咸湿视频</div>
+            <div class="tile-desc">人兽/欧美/亚洲<br>应有尽有</div>
         </a>
 
         <a href="https://www.iawrq2.vip:9103/entry/register14330/?i_code=27936549" target="_blank" class="tile">
-            <div class="tile-img" style="background-image: url('images1.jpg');"></div>
-            <div class="tile-content">
-                <div class="tile-title">开云体育</div>
-                <div class="tile-desc">全球赛事直播<br>实时投注</div>
-            </div>
+            <img src="images1.jpg" alt="开云体育">
+            <div class="tile-title">开云体育</div>
+            <div class="tile-desc">全球赛事直播<br>实时投注</div>
         </a>
 
         <a href="http://42.51.43.192:25504?Tesla=NjAwNDMz" target="_blank" class="tile">
-            <div class="tile-img" style="background-image: url('images2.jpg');"></div>
-            <div class="tile-content">
-                <div class="tile-title">欧亚国际</div>
-                <div class="tile-desc">实体娱乐城<br>尊贵体验</div>
-            </div>
+            <img src="images2.jpg" alt="欧亚国际">
+            <div class="tile-title">欧亚国际</div>
+            <div class="tile-desc">实体娱乐城<br>尊贵体验</div>
         </a>
     </div>
 
@@ -336,7 +322,7 @@
             <h3>小黑巷站长</h3>
             <p>欢迎来到小黑巷！这里是你深夜的秘密花园</p>
             <p>每日更新最新资源，专注分享不为人知的快乐</p>
-            <p>💓💓💓💓💓💓</p>
+            <p>Heart Heart Heart Heart Heart Heart</p>
             <p class="signature" id="signature"></p>
         </div>
     </div>
