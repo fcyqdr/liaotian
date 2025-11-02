@@ -135,6 +135,7 @@
             background-position: center;
             z-index: 1;
             transition: transform 0.4s ease;
+            filter: brightness(0.9) contrast(1.1);
         }
         .tile:hover::before {
             transform: scale(1.08);
@@ -309,7 +310,7 @@
             </div>
         </a>
 
-        <a href="https://www.iawrq2.vip:9103/entry/register14330/?i_code=27936549" target="_blank" class="tile" style="--bg: url('images1.jpg')">
+        <a href="https://www.hpluk7.vip:6001/entry/register52073/?i_code=27936549" target="_blank" class="tile" style="--bg: url('images1.jpg')">
             <div class="tile-content">
                 <div class="tile-title">开云体育</div>
                 <div class="tile-desc">全球赛事直播<br>实时投注</div>
@@ -333,7 +334,7 @@
             <h3>小黑巷站长</h3>
             <p>欢迎来到小黑巷！这里是你深夜的秘密花园</p>
             <p>每日更新最新资源，专注分享不为人知的快乐</p>
-            <p>💓💓💓💓💓💓</p>
+            <p>Heart Heart Heart Heart Heart Heart</p>
             <p class="signature" id="signature"></p>
         </div>
     </div>
@@ -346,11 +347,11 @@
     </button>
 
     <script>
-        // 动态背景图
+        // 应用背景图（修复版）
         document.querySelectorAll('.tile').forEach(tile => {
-            const bg = tile.style.getPropertyValue('--bg');
-            tile.style.setProperty('--tile-bg', bg);
-            tile.querySelector('.tile-content').style.background = 'linear-gradient(transparent, rgba(0,0,0,0.7))';
+            const bgUrl = tile.style.getPropertyValue('--bg').trim();
+            const cleanUrl = bgUrl.replace(/^url\(['"]?/, '').replace(/['"]?\)$/, '');
+            tile.style.backgroundImage = `url('${cleanUrl}')`;
         });
 
         // 动态签名
@@ -383,12 +384,6 @@
                 icon.innerHTML = `<path d="${moonPath}"/>`;
                 modeBtn.title = '切换到亮白模式';
             }
-        });
-
-        // 应用背景图
-        document.querySelectorAll('.tile').forEach(tile => {
-            const bg = tile.style.getPropertyValue('--bg');
-            tile.style.backgroundImage = bg;
         });
     </script>
 
