@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>小黑巷的快乐</title>
+
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-95QQNEC27X"></script>
     <script>
@@ -12,6 +13,22 @@
         gtag('js', new Date());
         gtag('config', 'G-95QQNEC27X');
     </script>
+
+    <!-- Statcounter Code -->
+    <script type="text/javascript">
+    var sc_project=13180843; 
+    var sc_invisible=0; 
+    var sc_security="f4187e06"; 
+    var scJsHost = "https://";
+    document.write("<sc"+"ript type='text/javascript' src='" + scJsHost+
+    "statcounter.com/counter/counter.js'></"+"script>");
+    </script>
+    <noscript><div class="statcounter"><a title="Web Analytics"
+    href="https://statcounter.com/" target="_blank"><img class="statcounter"
+    src="https://c.statcounter.com/13180843/0/f4187e06/0/" alt="Web Analytics"
+    referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+    <!-- End of Statcounter Code -->
+
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -92,7 +109,7 @@
             margin: 0 auto;
         }
 
-        /* 磁贴样式 */
+        /* 磁贴样式（显示式简介） */
         .tile {
             position: relative;
             border-radius: 12px;
@@ -181,7 +198,7 @@
             min-width: 250px;
         }
         .profile-info h3 {
-            margin: 0 0 8px 0;
+            margin: 0 0 8px;
             font-size: 20px;
             color: #ffd700;
             text-shadow: 0 1px 3px rgba(0,0,0,0.5);
@@ -317,7 +334,7 @@
         </a>
     </div>
 
-    <!-- 个人简介 + 动态签名 + 访问计数 -->
+    <!-- 个人简介 + 动态签名 -->
     <div class="profile-card">
         <div class="profile-avatar">
             <img src="avatar.jpg" alt="站长头像">
@@ -380,15 +397,11 @@
             }
         });
 
-        // 加载访问计数
-        fetch('counter.php')
-            .then(r => r.text())
-            .then(count => {
-                document.getElementById('visit-count').textContent = count;
-            })
-            .catch(() => {
-                document.getElementById('visit-count').textContent = '统计中';
-            });
+        // 本地计数（GitHub Pages 可用，临时显示）
+        let localCount = localStorage.getItem('localVisitCount') || 0;
+        localCount++;
+        localStorage.setItem('localVisitCount', localCount);
+        document.getElementById('visit-count').textContent = localCount + '（本地）';
     </script>
 
 </body>
