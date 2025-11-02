@@ -122,6 +122,53 @@
         .tile.jd { background: linear-gradient(135deg, #E2231A, #FF4A00); }
         .tile.amazon { background: linear-gradient(135deg, #FF9900, #FFB84D); }
 
+        /* 个人简介卡片 */
+        .profile-card {
+            position: relative;
+            z-index: 10;
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .profile-avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .profile-info {
+            flex: 1;
+            min-width: 250px;
+        }
+        .profile-info h3 {
+            margin: 0 0 8px;
+            font-size: 20px;
+            color: #ffd700;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+        .profile-info p {
+            margin: 4px 0;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #eee;
+        }
+
         /* 响应式：手机端 */
         @media (max-width: 768px) {
             .tiles-container {
@@ -131,6 +178,16 @@
             }
             .tile span { font-size: 13px; }
             .header { font-size: 16px; padding: 12px; }
+            .profile-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px;
+            }
+            .profile-avatar {
+                width: 70px;
+                height: 70px;
+            }
+            .profile-info h3 { font-size: 18px; }
         }
     </style>
 </head>
@@ -145,7 +202,7 @@
 
     <!-- 头部警告 -->
     <div class="header">
-        ⚠️防止掉失！购买影片前先注册⚠️
+        防止掉失！购买影片前先注册
     </div>
 
     <!-- 磁贴导航 -->
@@ -185,6 +242,19 @@
             <img src="images2.jpg" alt="欧亚国际">
             <span>欧亚国际</span>
         </a>
+    </div>
+
+    <!-- 个人简介卡片 -->
+    <div class="profile-card">
+        <div class="profile-avatar">
+            <img src="avatar.jpg" alt="站长头像">
+        </div>
+        <div class="profile-info">
+            <h3>小黑巷站长</h3>
+            <p>欢迎来到小黑巷！这里是你深夜的秘密花园</p>
+            <p>每日更新最新资源，专注分享不为人知的快乐</p>
+            <p>💗💓💓💓💓💓💓</p>
+        </div>
     </div>
 
 </body>
