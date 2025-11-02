@@ -14,7 +14,7 @@
         gtag('config', 'G-95QQNEC27X');
     </script>
 
-    <!-- Statcounter Code -->
+    <!-- Statcounter Code（真实访问统计） -->
     <script type="text/javascript">
     var sc_project=13180843; 
     var sc_invisible=0; 
@@ -27,6 +27,7 @@
     href="https://statcounter.com/" target="_blank"><img class="statcounter"
     src="https://c.statcounter.com/13180843/0/f4187e06/0/" alt="Web Analytics"
     referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+    <!-- End of Statcounter Code -->
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -322,7 +323,7 @@
         </a>
     </div>
 
-    <!-- 个人简介 + 动态签名 -->
+    <!-- 个人简介 + 动态签名（已删除访问计数） -->
     <div class="profile-card">
         <div class="profile-avatar">
             <img src="avatar.jpg" alt="站长头像">
@@ -332,7 +333,6 @@
             <p>欢迎来到小黑巷！这里是你深夜的秘密花园</p>
             <p>每日更新最新资源，专注分享不为人知的快乐</p>
             <p>有问题？留言或联系站长，24小时在线</p>
-            <p>本站总访问：<span id="visit-count" style="color:#ffd700; font-weight:bold;">加载中...</span> 次</p>
             <p class="signature" id="signature"></p>
         </div>
     </div>
@@ -383,12 +383,6 @@
                 modeBtn.title = '切换到亮白模式';
             }
         });
-
-        // 本地计数（GitHub Pages 可用）
-        let localCount = localStorage.getItem('localVisitCount') || 0;
-        localCount++;
-        localStorage.setItem('localVisitCount', localCount);
-        document.getElementById('visit-count').textContent = localCount + '（本地）';
     </script>
 
 </body>
