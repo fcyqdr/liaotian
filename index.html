@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>小黑巷</title>
+    <title>小黑巷的快乐</title>
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-95QQNEC27X"></script>
@@ -27,7 +27,6 @@
     href="https://statcounter.com/" target="_blank"><img class="statcounter"
     src="https://c.statcounter.com/13180843/0/f4187e06/0/" alt="Web Analytics"
     referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
-    <!-- End of Statcounter Code -->
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -97,62 +96,66 @@
             50% { text-shadow: 0 0 5px #fff; }
         }
 
-        /* 磁贴容器 */
+        /* 磁贴容器：固定两列/三列 */
         .tiles-container {
             position: relative;
             z-index: 10;
             padding: 20px;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 18px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
             max-width: 1000px;
             margin: 0 auto;
         }
+        @media (min-width: 768px) {
+            .tiles-container { grid-template-columns: repeat(3, 1fr); }
+        }
 
-        /* 磁贴样式（显示式简介） */
+        /* 长方形磁贴（拉满） */
         .tile {
             position: relative;
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.35);
             transition: transform 0.3s, box-shadow 0.3s;
             cursor: pointer;
             text-decoration: none;
             color: white;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
+            justify-content: center;
             align-items: center;
-            padding: 16px 12px;
-            text-align: center;
-            min-height: 130px;
+            padding: 20px 16px;
+            min-height: 160px;
             background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            text-align: center;
         }
         .tile:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+            transform: translateY(-8px);
+            box-shadow: 0 16px 32px rgba(0,0,0,0.45);
         }
+
+        /* 放大图片 */
         .tile img {
-            width: 48px;
-            height: 48px;
-            margin-bottom: 10px;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-            border-radius: 8px;
+            width: 60px;
+            height: 60px;
+            margin-bottom: 12px;
+            filter: drop-shadow(0 3px 6px rgba(0,0,0,0.4));
+            border-radius: 12px;
+            object-fit: cover;
         }
+
         .tile-title {
             font-weight: bold;
-            font-size: 15px;
+            font-size: 17px;
             margin-bottom: 6px;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.6);
         }
         .tile-desc {
-            font-size: 12px;
-            color: #ddd;
+            font-size: 13px;
+            color: #eee;
             line-height: 1.4;
-            opacity: 0.9;
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
+            opacity: 0.92;
         }
 
         /* 磁贴颜色 */
@@ -258,26 +261,11 @@
             transform: rotate(360deg);
         }
 
-        /* 响应式 */
-        @media (max-width: 768px) {
-            .tiles-container { 
-                grid-template-columns: repeat(2, 1fr); 
-                gap: 14px; 
-                padding: 15px; 
-            }
-            .tile { 
-                min-height: 120px; 
-                padding: 12px 8px; 
-            }
-            .tile img { width: 40px; height: 40px; }
-            .tile-title { font-size: 14px; }
-            .tile-desc { font-size: 11px; }
-            .header { font-size: 16px; padding: 12px; }
-            .profile-card { flex-direction: column; text-align: center; padding: 15px; }
-            .profile-avatar { width: 70px; height: 70px; }
-            .profile-info h3 { font-size: 18px; }
-            .mode-toggle { width: 44px; height: 44px; bottom: 18px; right: 18px; }
-            .mode-toggle svg { width: 22px; height: 22px; }
+        /* 响应式微调 */
+        @media (max-width: 480px) {
+            .tile img { width: 50px; height: 50px; }
+            .tile-title { font-size: 15px; }
+            .tile-desc { font-size: 12px; }
         }
     </style>
 </head>
@@ -295,12 +283,12 @@
         防止掉失！购买影片前先注册
     </div>
 
-    <!-- 磁贴导航 -->
+    <!-- 磁贴导航（长方形拉满） -->
     <div class="tiles-container">
         <a href="https://l6k0z7n2y7s9z8m4v4i9.cc/?channel=6d530728c0583d8037db5bd8e9e6ea52" target="_blank" class="tile google">
             <img src="images11.jpg" alt="Ai脱衣">
             <div class="tile-title">Ai脱衣</div>
-            <div class="tile-desc">AI智能去衣<br>满足你的性幻想！</div>
+            <div class="tile-desc">AI智能去衣<br>秒变艺术照！</div>
         </a>
 
         <a href="http://wv24.icu" target="_blank" class="tile baidu">
@@ -343,7 +331,7 @@
             <h3>小黑巷站长</h3>
             <p>欢迎来到小黑巷！这里是你深夜的秘密花园</p>
             <p>每日更新最新资源，专注分享不为人知的快乐</p>
-            <p>💗💗💗💗💗💗</p>
+            <p>有问题？留言或联系站长，24小时在线</p>
             <p>本站总访问：<span id="visit-count" style="color:#ffd700; font-weight:bold;">加载中...</span> 次</p>
             <p class="signature" id="signature"></p>
         </div>
@@ -387,7 +375,6 @@
         modeBtn.addEventListener('click', () => {
             document.body.classList.toggle('dark');
             document.body.classList.toggle('light');
-            
             if (document.body.classList.contains('light')) {
                 icon.innerHTML = `<path d="${sunPath}"/>`;
                 modeBtn.title = '切换到暗黑模式';
@@ -397,7 +384,7 @@
             }
         });
 
-        // 本地计数（GitHub Pages 可用，临时显示）
+        // 本地计数（GitHub Pages 可用）
         let localCount = localStorage.getItem('localVisitCount') || 0;
         localCount++;
         localStorage.setItem('localVisitCount', localCount);
