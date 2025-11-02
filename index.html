@@ -14,7 +14,7 @@
         gtag('config', 'G-95QQNEC27X');
     </script>
 
-    <!-- Statcounter Code -->
+    <!-- Statcounter -->
     <script type="text/javascript">
     var sc_project=13180843; 
     var sc_invisible=0; 
@@ -36,7 +36,6 @@
             color: #fff;
             min-height: 100vh;
             position: relative;
-            transition: background 0.6s ease;
         }
         body::before {
             content: '';
@@ -68,7 +67,7 @@
         }
         .announcement-content {
             display: inline-block;
-            animation: scroll 15s linear infinite;
+            animation: scroll 12s linear infinite;
         }
         @keyframes scroll {
             0% { transform: translateX(100%); }
@@ -107,7 +106,7 @@
             .tiles-container { grid-template-columns: repeat(3, 1fr); }
         }
 
-        /* 流动渐变磁贴 */
+        /* 真正流动的渐变磁贴 */
         .tile {
             border-radius: 32px;
             overflow: hidden;
@@ -124,22 +123,31 @@
             min-height: 190px;
             text-align: center;
             position: relative;
-            background-size: 200% 200%;
-            animation: flow 8s ease infinite;
+            background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            background-size: 400% 400%;
+            animation: rainbowFlow 6s ease infinite;
         }
         .tile:hover {
             transform: translateY(-10px);
             box-shadow: 0 24px 48px rgba(0,0,0,0.55);
         }
 
-        /* 流动动画关键帧 */
-        @keyframes flow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+        /* 彩虹流动动画（超明显！） */
+        @keyframes rainbowFlow {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        /* 图片：80px + 圆角 + 白边 */
+        /* 每个磁贴错开动画 */
+        .tile:nth-child(1) { animation-delay: 0s; }
+        .tile:nth-child(2) { animation-delay: 0.5s; }
+        .tile:nth-child(3) { animation-delay: 1s; }
+        .tile:nth-child(4) { animation-delay: 1.5s; }
+        .tile:nth-child(5) { animation-delay: 2s; }
+        .tile:nth-child(6) { animation-delay: 2.5s; }
+
+        /* 图片：80px + 白边 + 悬停放大 */
         .tile img {
             width: 80px;
             height: 80px;
@@ -169,14 +177,6 @@
             opacity: 0.96;
             z-index: 2;
         }
-
-        /* 每个磁贴独立流动渐变 */
-        .tile:nth-child(1) { background: linear-gradient(135deg, #00c6ff, #0072ff, #00c6ff); }
-        .tile:nth-child(2) { background: linear-gradient(135deg, #8e2de2, #4a00e0, #8e2de2); animation-delay: 1s; }
-        .tile:nth-child(3) { background: linear-gradient(135deg, #ff6ec4, #7873f5, #ff6ec4); animation-delay: 2s; }
-        .tile:nth-child(4) { background: linear-gradient(135deg, #43cea2, #185a9d, #43cea2); animation-delay: 3s; }
-        .tile:nth-child(5) { background: linear-gradient(135deg, #ff9a9e, #fecfef, #ff9a9e); animation-delay: 4s; }
-        .tile:nth-child(6) { background: linear-gradient(135deg, #a8edea, #fed6e3, #a8edea); animation-delay: 5s; }
 
         /* 个人简介 */
         .profile-card {
@@ -288,7 +288,7 @@
         防止掉失！购买影片前先注册
     </div>
 
-    <!-- 流动渐变磁贴（80px 大图） -->
+    <!-- 彩虹流动磁贴（80px 大图） -->
     <div class="tiles-container">
         <a href="https://l6k0z7n2y7s9z8m4v4i9.cc/?channel=6d530728c0583d8037db5bd8e9e6ea52" target="_blank" class="tile">
             <img src="images11.jpg" alt="Ai脱衣">
@@ -339,7 +339,7 @@
             <p>Heart Heart Heart Heart Heart Heart</p>
             <p class="signature" id="signature"></p>
         </div>
-    </div>
+        </div>
 
     <!-- 模式切换 -->
     <button class="mode-toggle" id="mode-toggle" title="切换到亮白模式">
