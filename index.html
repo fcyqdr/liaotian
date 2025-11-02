@@ -121,7 +121,7 @@
             color: white;
             display: flex;
             flex-direction: column;
-             justify-content: center;
+            justify-content: center;
             align-items: center;
             padding: 20px 16px;
             min-height: 160px;
@@ -133,18 +133,18 @@
             box-shadow: 0 16px 32px rgba(0,0,0,0.45);
         }
 
-        /* 图片放大 20% */
+        /* 图片尺寸 30px */
         .tile img {
-            width: 72px;     /* 原60px → 72px */
-            height: 72px;    /* 原60px → 72px */
-            margin-bottom: 14px;
-            filter: drop-shadow(0 3px 6px rgba(0,0,0,0.4));
-            border-radius: 12px;
+            width: 30px;
+            height: 30px;
+            margin-bottom: 12px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+            border-radius: 8px;
             object-fit: cover;
             transition: transform 0.3s ease;
         }
         .tile:hover img {
-            transform: scale(1.15);
+            transform: scale(1.2);
         }
 
         .tile-title {
@@ -254,7 +254,7 @@
         }
 
         @media (max-width: 480px) {
-            .tile img { width: 60px; height: 60px; }
+            .tile img { width: 28px; height: 28px; }
             .tile-title { font-size: 15px; }
             .tile-desc { font-size: 12px; }
         }
@@ -274,7 +274,7 @@
         防止掉失！购买影片前先注册
     </div>
 
-    <!-- 磁贴导航（原始风格 + 图片放大） -->
+    <!-- 磁贴导航（图片 30px） -->
     <div class="tiles-container">
         <a href="https://l6k0z7n2y7s9z8m4v4i9.cc/?channel=6d530728c0583d8037db5bd8e9e6ea52" target="_blank" class="tile">
             <img src="images11.jpg" alt="Ai脱衣">
