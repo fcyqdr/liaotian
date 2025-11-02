@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>小黑巷</title>
+    <title>小黑巷的快乐</title>
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-95QQNEC27X"></script>
     <script>
@@ -92,7 +92,7 @@
             margin: 0 auto;
         }
 
-        /* 磁贴样式（显示式简介） */
+        /* 磁贴样式 */
         .tile {
             position: relative;
             border-radius: 12px;
@@ -138,7 +138,7 @@
             align-items: center;
         }
 
-        /* 磁贴颜色覆盖（保留渐变底色） */
+        /* 磁贴颜色 */
         .tile.google { background: linear-gradient(135deg, #4285F4, #34A853); }
         .tile.baidu { background: linear-gradient(135deg, #2932E1, #00D1FF); }
         .tile.youku { background: linear-gradient(135deg, #FF6B35, #FF8C42); }
@@ -181,7 +181,7 @@
             min-width: 250px;
         }
         .profile-info h3 {
-            margin: 0 0 8px;
+            margin: 0 0 8px 0;
             font-size: 20px;
             color: #ffd700;
             text-shadow: 0 1px 3px rgba(0,0,0,0.5);
@@ -206,7 +206,7 @@
             to { opacity: 1; }
         }
 
-        /* 模式切换按钮 */
+        /* SVG 模式切换按钮 */
         .mode-toggle {
             position: fixed;
             bottom: 25px;
@@ -218,7 +218,6 @@
             border: none;
             border-radius: 50%;
             color: white;
-            font-size: 22px;
             cursor: pointer;
             backdrop-filter: blur(12px);
             box-shadow: 0 6px 20px rgba(0,0,0,0.4);
@@ -226,11 +225,20 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 0;
         }
         .mode-toggle:hover {
             background: rgba(255, 215, 0, 0.9);
             transform: scale(1.12) rotate(15deg);
             box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+        }
+        .mode-toggle svg {
+            width: 26px;
+            height: 26px;
+            transition: transform 0.4s ease;
+        }
+        .mode-toggle:hover svg {
+            transform: rotate(360deg);
         }
 
         /* 响应式 */
@@ -251,7 +259,8 @@
             .profile-card { flex-direction: column; text-align: center; padding: 15px; }
             .profile-avatar { width: 70px; height: 70px; }
             .profile-info h3 { font-size: 18px; }
-            .mode-toggle { width: 44px; height: 44px; font-size: 20px; bottom: 18px; right: 18px; }
+            .mode-toggle { width: 44px; height: 44px; bottom: 18px; right: 18px; }
+            .mode-toggle svg { width: 22px; height: 22px; }
         }
     </style>
 </head>
@@ -269,44 +278,38 @@
         防止掉失！购买影片前先注册
     </div>
 
-    <!-- 磁贴导航（显示式简介） -->
+    <!-- 磁贴导航 -->
     <div class="tiles-container">
-        <!-- 1. Ai脱衣 -->
         <a href="https://l6k0z7n2y7s9z8m4v4i9.cc/?channel=6d530728c0583d8037db5bd8e9e6ea52" target="_blank" class="tile google">
             <img src="images11.jpg" alt="Ai脱衣">
             <div class="tile-title">Ai脱衣</div>
-            <div class="tile-desc">AI智能去衣<br>满足你的性幻想！</div>
+            <div class="tile-desc">AI智能去衣<br>秒变艺术照！</div>
         </a>
 
-        <!-- 2. 幼女萝莉 -->
         <a href="http://wv24.icu" target="_blank" class="tile baidu">
             <img src="images12.jpg" alt="幼女萝莉">
             <div class="tile-title">幼女萝莉</div>
             <div class="tile-desc">高清萝莉资源<br>分类清晰</div>
         </a>
 
-        <!-- 3. 真人直播 -->
         <a href="http://avaw.cc" target="_blank" class="tile youku">
             <img src="images3.jpg" alt="直播">
             <div class="tile-title">真人直播</div>
             <div class="tile-desc">24小时真人<br>互动强</div>
         </a>
 
-        <!-- 4. 咸湿视频 -->
         <a href="http://se678.top" target="_blank" class="tile taobao">
             <img src="images4.jpg" alt="咸湿视频">
-            <div class="tile-desc">人兽/欧美/亚洲<br>应有尽有</div>
             <div class="tile-title">咸湿视频</div>
+            <div class="tile-desc">人兽/欧美/亚洲<br>应有尽有</div>
         </a>
 
-        <!-- 5. 开云体育 -->
         <a href="https://www.hpluk7.vip:6001/entry/register52073/?i_code=27936549" target="_blank" class="tile jd">
             <img src="images1.jpg" alt="开云体育">
             <div class="tile-title">开云体育</div>
             <div class="tile-desc">全球赛事直播<br>实时投注</div>
         </a>
 
-        <!-- 6. 欧亚国际 -->
         <a href="http://42.51.43.192:25504?Tesla=NjAwNDMz" target="_blank" class="tile amazon">
             <img src="images2.jpg" alt="欧亚国际">
             <div class="tile-title">欧亚国际</div>
@@ -314,7 +317,7 @@
         </a>
     </div>
 
-    <!-- 个人简介 + 动态签名 -->
+    <!-- 个人简介 + 动态签名 + 访问计数 -->
     <div class="profile-card">
         <div class="profile-avatar">
             <img src="avatar.jpg" alt="站长头像">
@@ -324,21 +327,26 @@
             <p>欢迎来到小黑巷！这里是你深夜的秘密花园</p>
             <p>每日更新最新资源，专注分享不为人知的快乐</p>
             <p>有问题？留言或联系站长，24小时在线</p>
+            <p>本站总访问：<span id="visit-count" style="color:#ffd700; font-weight:bold;">加载中...</span> 次</p>
             <p class="signature" id="signature"></p>
         </div>
     </div>
 
-    <!-- 暗白模式切换按钮 -->
-    <button class="mode-toggle" id="mode-toggle" title="切换到亮白模式">Dark Mode</button>
+    <!-- SVG 模式切换按钮 -->
+    <button class="mode-toggle" id="mode-toggle" title="切换到亮白模式">
+        <svg id="mode-icon" viewBox="0 0 24 24" width="26" height="26" fill="currentColor">
+            <path d="M21.64 13a1 1 0 0 1-1 .89 8.05 8.05 0 1 1-8.94-8.94 1 1 0 0 1 .9 1.75A6.06 6.06 0 1 0 18.75 19a1 1 0 0 1 1.9.36 8 8 0 0 1 1-6.36z"/>
+        </svg>
+    </button>
 
     <script>
         // 动态签名
         const signatures = [
-            "「深夜不打烊，快乐不停歇」",
-            "「资源每日更新，质量有保证」",
-            "「注册后享永久观看权限」",
-            "「一个人的快乐，由我来守护」",
-            "「小黑巷，懂你的夜」"
+            "深夜不打烊，快乐不停歇",
+            "资源每日更新，质量有保证",
+            "注册后享永久观看权限",
+            "一个人的快乐，由我来守护",
+            "小黑巷，懂你的夜"
         ];
         let sigIndex = 0;
         const sigEl = document.getElementById('signature');
@@ -353,20 +361,34 @@
         changeSignature();
         setInterval(changeSignature, 8000);
 
-        // 暗白模式切换
+        // SVG 图标切换
         const modeBtn = document.getElementById('mode-toggle');
+        const icon = document.getElementById('mode-icon');
+        const moonPath = "M21.64 13a1 1 0 0 1-1 .89 8.05 8.05 0 1 1-8.94-8.94 1 1 0 0 1 .9 1.75A6.06 6.06 0 1 0 18.75 19a1 1 0 0 1 1.9.36 8 8 0 0 1 1-6.36z";
+        const sunPath = "M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-7v2a1 1 0 1 1-2 0V0a1 1 0 1 1 2 0zm0 22v-2a1 1 0 1 1-2 0v2a1 1 0 1 1 2 0zm10-10h-2a1 1 0 1 1 0-2h2a1 1 0 1 1 0 2zM2 12h2a1 1 0 1 1 0 2H2a1 1 0 1 1 0-2zm17.66-6.34l-1.42 1.42a1 1 0 1 1-1.42-1.42l1.42-1.42a1 1 0 1 1 1.42 1.42zm-11.32 0a1 1 0 0 1 0 1.42l-1.42 1.42a1 1 0 1 1-1.42-1.42l1.42-1.42a1 1 0 0 1 1.42 0zm11.32 12.68a1 1 0 0 1 0-1.42l1.42-1.42a1 1 0 1 1 1.42 1.42l-1.42 1.42a1 1 0 0 1-1.42 0zm-11.32 0a1 1 0 0 1-1.42 0l-1.42-1.42a1 1 0 1 1 1.42-1.42l1.42 1.42a1 1 0 0 1 0 1.42z";
+
         modeBtn.addEventListener('click', () => {
             document.body.classList.toggle('dark');
             document.body.classList.toggle('light');
             
             if (document.body.classList.contains('light')) {
-                modeBtn.innerHTML = '暗黑模式';
+                icon.innerHTML = `<path d="${sunPath}"/>`;
                 modeBtn.title = '切换到暗黑模式';
             } else {
-                modeBtn.innerHTML = '亮白模式';
+                icon.innerHTML = `<path d="${moonPath}"/>`;
                 modeBtn.title = '切换到亮白模式';
             }
         });
+
+        // 加载访问计数
+        fetch('counter.php')
+            .then(r => r.text())
+            .then(count => {
+                document.getElementById('visit-count').textContent = count;
+            })
+            .catch(() => {
+                document.getElementById('visit-count').textContent = '统计中';
+            });
     </script>
 
 </body>
