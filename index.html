@@ -21,7 +21,7 @@
             color: #fff;
             min-height: 100vh;
             position: relative;
-            transition: background 0.5s ease;
+            transition: background 0.6s ease;
         }
         body::before {
             content: '';
@@ -29,18 +29,18 @@
             top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.5);
             z-index: 1;
-            transition: background 0.5s ease;
+            transition: background 0.6s ease;
         }
 
         /* 暗黑模式 */
-        body.dark::before { background: rgba(0, 0, 0, 0.8); }
+        body.dark::before { background: rgba(0, 0, 0, 0.85); }
         body.light { 
             background: url('https://images.unsplash.com/photo-1492011221367-f47e3ccd77a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
             background-size: cover;
         }
-        body.light::before { background: rgba(255, 255, 255, 0.7); }
-        body.light .header, body.light .announcement { filter: brightness(0.9); }
-        body.light .tile { opacity: 0.95; }
+        body.light::before { background: rgba(255, 255, 255, 0.75); }
+        body.light .header, body.light .announcement { filter: brightness(0.92); }
+        body.light .tile { opacity: 0.96; }
 
         /* 滑动公告 */
         .announcement {
@@ -126,6 +126,63 @@
             text-shadow: 0 1px 2px rgba(0,0,0,0.5);
         }
 
+        /* 磁贴简介（悬停显示） */
+        .tile-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.85);
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 20;
+            margin-bottom: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            pointer-events: none;
+        }
+        .tile-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: rgba(0, 0, 0, 0.85);
+        }
+        .tile:hover .tile-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(-5px);
+        }
+
+        /* 移动端：点击显示简介 */
+        @media (max-width: 768px) {
+            .tile-tooltip {
+                position: static;
+                transform: none;
+                opacity: 0;
+                visibility: hidden;
+                background: rgba(0,0,0,0.7);
+                margin-top: 5px;
+                white-space: normal;
+                text-align: center;
+                padding: 6px 8px;
+                font-size: 12px;
+            }
+            .tile-tooltip::after { display: none; }
+            .tile:active .tile-tooltip,
+            .tile.touched .tile-tooltip {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
         /* 磁贴颜色 */
         .tile.google { background: linear-gradient(135deg, #4285F4, #34A853); }
         .tile.baidu { background: linear-gradient(135deg, #2932E1, #00D1FF); }
@@ -194,32 +251,31 @@
             to { opacity: 1; }
         }
 
-        /* 控制面板（模式 + 音乐） */
-        .control-panel {
+        /* 模式切换按钮 */
+        .mode-toggle {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 25px;
+            right: 25px;
             z-index: 100;
-            display: flex;
-            gap: 10px;
-            flex-direction: column;
-        }
-        .control-btn {
-            width: 44px;
-            height: 44px;
-            background: rgba(0,0,0,0.6);
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.6);
             border: none;
             border-radius: 50%;
             color: white;
-            font-size: 20px;
+            font-size: 22px;
             cursor: pointer;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            transition: all 0.3s;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .control-btn:hover {
-            background: rgba(255,215,0,0.9);
-            transform: scale(1.1);
+        .mode-toggle:hover {
+            background: rgba(255, 215, 0, 0.9);
+            transform: scale(1.12) rotate(15deg);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
         }
 
         /* 响应式 */
@@ -229,8 +285,7 @@
             .profile-card { flex-direction: column; text-align: center; padding: 15px; }
             .profile-avatar { width: 70px; height: 70px; }
             .profile-info h3 { font-size: 18px; }
-            .control-panel { bottom: 15px; right: 15px; }
-            .control-btn { width: 40px; height: 40px; font-size: 18px; }
+            .mode-toggle { width: 44px; height: 44px; font-size: 20px; bottom: 18px; right: 18px; }
         }
     </style>
 </head>
@@ -248,25 +303,48 @@
         防止掉失！购买影片前先注册
     </div>
 
-    <!-- 磁贴导航 -->
+    <!-- 磁贴导航（带简介） -->
     <div class="tiles-container">
+        <!-- 1. Ai脱衣 -->
         <a href="https://l6k0z7n2y7s9z8m4v4i9.cc/?channel=6d530728c0583d8037db5bd8e9e6ea52" target="_blank" class="tile google">
-            <img src="images11.jpg" alt="Ai脱衣"><span>Ai脱衣</span>
+            <img src="images11.jpg" alt="Ai脱衣">
+            <span>Ai脱衣</span>
+            <div class="tile-tooltip">AI智能去衣，秒变艺术照！</div>
         </a>
+
+        <!-- 2. 幼女萝莉 -->
         <a href="http://wv24.icu" target="_blank" class="tile baidu">
-            <img src="images12.jpg" alt="幼女萝莉"><span>幼女萝莉</span>
+            <img src="images12.jpg" alt="幼女萝莉">
+            <span>幼女萝莉</span>
+            <div class="tile-tooltip">高清萝莉资源，分类清晰</div>
         </a>
+
+        <!-- 3. 真人直播 -->
         <a href="http://avaw.cc" target="_blank" class="tile youku">
-            <img src="images3.jpg" alt="直播"><span>真人直播</span>
+            <img src="images3.jpg" alt="直播">
+            <span>真人直播</span>
+            <div class="tile-tooltip">24小时真人直播，互动强</div>
         </a>
+
+        <!-- 4. 咸湿视频 -->
         <a href="http://se678.top" target="_blank" class="tile taobao">
-            <img src="images4.jpg" alt="咸湿视频"><span>咸湿视频</span>
+            <img src="images4.jpg" alt="咸湿视频">
+            <span>咸湿视频</span>
+            <div class="tile-tooltip">人兽/欧美/亚洲，应有尽有</div>
         </a>
-        <a href="https://www.iawrq2.vip:9103/entry/register14330/?i_code=27936549" target="_blank" class="tile jd">
-            <img src="images1.jpg" alt="开云体育"><span>开云体育</span>
+
+        <!-- 5. 开云体育 -->
+        <a href="https://www.hpluk7.vip:6001/entry/register52073/?i_code=27936549" target="_blank" class="tile jd">
+            <img src="images1.jpg" alt="开云体育">
+            <span>开云体育</span>
+            <div class="tile-tooltip">全球赛事直播，实时投注</div>
         </a>
+
+        <!-- 6. 欧亚国际 -->
         <a href="http://42.51.43.192:25504?Tesla=NjAwNDMz" target="_blank" class="tile amazon">
-            <img src="images2.jpg" alt="欧亚国际"><span>欧亚国际</span>
+            <img src="images2.jpg" alt="欧亚国际">
+            <span>欧亚国际</span>
+            <div class="tile-tooltip">实体娱乐城，尊贵体验</div>
         </a>
     </div>
 
@@ -279,25 +357,16 @@
             <h3>小黑巷站长</h3>
             <p>欢迎来到小黑巷！这里是你深夜的秘密花园</p>
             <p>每日更新最新资源，专注分享不为人知的快乐</p>
-            <p>💓💓💓💓💓💓</p>
+            <p>有问题？留言或联系站长，24小时在线</p>
             <p class="signature" id="signature"></p>
         </div>
     </div>
 
-    <!-- 控制面板 -->
-    <div class="control-panel">
-        <button class="control-btn" id="mode-toggle" title="切换模式">Dark Mode</button>
-        <button class="control-btn" id="music-toggle" title="播放音乐">Play Music</button>
-    </div>
-
-    <!-- 背景音乐 -->
-    <audio id="bgm" loop>
-        <source src="bgm.mp3" type="audio/mpeg">
-        您的浏览器不支持音频播放。
-    </audio>
+    <!-- 暗白模式切换按钮 -->
+    <button class="mode-toggle" id="mode-toggle" title="切换到亮白模式">Dark Mode</button>
 
     <script>
-        // 动态签名（每2秒切换）
+        // 动态签名
         const signatures = [
             "「深夜不打烊，快乐不停歇」",
             "「资源每日更新，质量有保证」",
@@ -318,43 +387,34 @@
         changeSignature();
         setInterval(changeSignature, 8000);
 
-        // 暗黑/亮白模式切换
+        // 暗白模式切换
         const modeBtn = document.getElementById('mode-toggle');
         modeBtn.addEventListener('click', () => {
             document.body.classList.toggle('dark');
             document.body.classList.toggle('light');
+            
             if (document.body.classList.contains('light')) {
-                modeBtn.textContent = '白天模式';
+                modeBtn.innerHTML = 'Light Mode';
                 modeBtn.title = '切换到暗黑模式';
             } else {
-                modeBtn.textContent = '黑夜模式';
+                modeBtn.innerHTML = 'Dark Mode';
                 modeBtn.title = '切换到亮白模式';
             }
         });
 
-        // 背景音乐控制
-        const audio = document.getElementById('bgm');
-        const musicBtn = document.getElementById('music-toggle');
-        let isPlaying = false;
-        musicBtn.addEventListener('click', () => {
-            if (isPlaying) {
-                audio.pause();
-                musicBtn.textContent = '播放音乐';
-                musicBtn.title = '播放音乐';
-            } else {
-                audio.play().catch(() => {
-                    alert('音乐播放需要用户交互，请点击页面后再试');
+        // 移动端点击显示简介
+        if ('ontouchstart' in window) {
+            document.querySelectorAll('.tile').forEach(tile => {
+                tile.addEventListener('click', function(e) {
+                    if (!this.classList.contains('touched')) {
+                        e.preventDefault();
+                        document.querySelectorAll('.tile').forEach(t => t.classList.remove('touched'));
+                        this.classList.add('touched');
+                        setTimeout(() => this.classList.remove('touched'), 2000);
+                    }
                 });
-                musicBtn.textContent = '暂停音乐';
-                musicBtn.title = '暂停音乐';
-            }
-            isPlaying = !isPlaying;
-        });
-
-        // 自动播放（需用户交互后）
-        document.body.addEventListener('click', () => {
-            if (!isPlaying) audio.play().catch(() => {});
-        }, { once: true });
+            });
+        }
     </script>
 
 </body>
