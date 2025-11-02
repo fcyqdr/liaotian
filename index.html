@@ -109,7 +109,7 @@
             .tiles-container { grid-template-columns: repeat(3, 1fr); }
         }
 
-        /* 长方形磁贴 */
+        /* 磁贴：渐变背景 + 图片背景 */
         .tile {
             position: relative;
             border-radius: 16px;
@@ -133,17 +133,20 @@
             box-shadow: 0 16px 32px rgba(0,0,0,0.45);
         }
 
-        /* 图片尺寸 30px */
-        .tile img {
+        /* 图片作为背景，30px 居中 */
+        .tile::before {
+            content: '';
             width: 30px;
             height: 30px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             margin-bottom: 12px;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
             border-radius: 8px;
-            object-fit: cover;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
             transition: transform 0.3s ease;
         }
-        .tile:hover img {
+        .tile:hover::before {
             transform: scale(1.2);
         }
 
@@ -254,7 +257,7 @@
         }
 
         @media (max-width: 480px) {
-            .tile img { width: 28px; height: 28px; }
+            .tile::before { width: 28px; height: 28px; }
             .tile-title { font-size: 15px; }
             .tile-desc { font-size: 12px; }
         }
@@ -274,40 +277,34 @@
         防止掉失！购买影片前先注册
     </div>
 
-    <!-- 磁贴导航（图片 30px） -->
+    <!-- 磁贴导航（背景渐变 + 30px 图片） -->
     <div class="tiles-container">
-        <a href="https://l6k0z7n2y7s9z8m4v4i9.cc/?channel=6d530728c0583d8037db5bd8e9e6ea52" target="_blank" class="tile">
-            <img src="images11.jpg" alt="Ai脱衣">
+        <a href="https://l6k0z7n2y7s9z8m4v4i9.cc/?channel=6d530728c0583d8037db5bd8e9e6ea52" target="_blank" class="tile" style="--img: url('images11.jpg');">
             <div class="tile-title">Ai脱衣</div>
             <div class="tile-desc">AI智能去衣<br>满足你的性幻想！</div>
         </a>
 
-        <a href="http://wv24.icu" target="_blank" class="tile">
-            <img src="images12.jpg" alt="幼女萝莉">
+        <a href="http://wv24.icu" target="_blank" class="tile" style="--img: url('images12.jpg');">
             <div class="tile-title">幼女萝莉</div>
             <div class="tile-desc">高清萝莉资源<br>分类清晰</div>
         </a>
 
-        <a href="http://avaw.cc" target="_blank" class="tile">
-            <img src="images3.jpg" alt="直播">
+        <a href="http://avaw.cc" target="_blank" class="tile" style="--img: url('images3.jpg');">
             <div class="tile-title">真人直播</div>
             <div class="tile-desc">24小时真人<br>互动强</div>
         </a>
 
-        <a href="http://se678.top" target="_blank" class="tile">
-            <img src="images4.jpg" alt="咸湿视频">
+        <a href="http://se678.top" target="_blank" class="tile" style="--img: url('images4.jpg');">
             <div class="tile-title">咸湿视频</div>
             <div class="tile-desc">人兽/欧美/亚洲<br>应有尽有</div>
         </a>
 
-        <a href="https://www.iawrq2.vip:9103/entry/register14330/?i_code=27936549" target="_blank" class="tile">
-            <img src="images1.jpg" alt="开云体育">
+        <a href="https://www.iawrq2.vip:9103/entry/register14330/?i_code=27936549" target="_blank" class="tile" style="--img: url('images1.jpg');">
             <div class="tile-title">开云体育</div>
             <div class="tile-desc">全球赛事直播<br>实时投注</div>
         </a>
 
-        <a href="http://42.51.43.192:25504?Tesla=NjAwNDMz" target="_blank" class="tile">
-            <img src="images2.jpg" alt="欧亚国际">
+        <a href="http://42.51.43.192:25504?Tesla=NjAwNDMz" target="_blank" class="tile" style="--img: url('images2.jpg');">
             <div class="tile-title">欧亚国际</div>
             <div class="tile-desc">实体娱乐城<br>尊贵体验</div>
         </a>
@@ -335,6 +332,13 @@
     </button>
 
     <script>
+        // 应用图片背景
+        document.querySelectorAll('.tile').forEach(tile => {
+            const imgUrl = tile.style.getPropertyValue('--img');
+            tile.style.setProperty('--tile-img', imgUrl);
+            tile.querySelector('::before')?.style && (tile.querySelector('::before').style.backgroundImage = imgUrl);
+        });
+
         // 动态签名
         const signatures = ["深夜不打烊，快乐不停歇","资源每日更新，质量有保证","注册后享永久观看权限","一个人的快乐，由我来守护","小黑巷，懂你的夜"];
         let sigIndex = 0;
@@ -366,7 +370,21 @@
                 modeBtn.title = '切换到亮白模式';
             }
         });
+
+        // 关键：应用图片到 ::before
+        document.querySelectorAll('.tile').forEach(tile => {
+            const img = tile.style.getPropertyValue('--img').trim();
+            const clean = img.replace(/^url\(['"]?/, '').replace(/['"]?\)$/, '');
+            tile.style.setProperty('--tile-img', `url('${clean}')`);
+        });
     </script>
+
+    <style>
+        /* 动态应用背景图 */
+        .tile::before {
+            background-image: var(--tile-img);
+        }
+    </style>
 
 </body>
 </html>
