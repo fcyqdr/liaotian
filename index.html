@@ -57,13 +57,14 @@
         .announcement {
             position: relative;
             z-index: 10;
-            background: rgba(255, 215, 0, 0.9);
-            color: #333;
+            background: linear-gradient(90deg, #ff8a00, #e52e71);
+            color: #fff;
             text-align: center;
             padding: 6px 0;
             font-size: 14px;
             overflow: hidden;
             white-space: nowrap;
+            font-weight: bold;
         }
         .announcement-content {
             display: inline-block;
@@ -80,15 +81,15 @@
             z-index: 10;
             text-align: center;
             padding: 15px;
-            background: rgba(153, 77, 255, 0.9);
+            background: linear-gradient(135deg, #9c27b0, #e91e63);
             font-weight: bold;
             font-size: 18px;
-            text-shadow: 0 0 10px #ff00ff;
+            text-shadow: 0 0 12px #ff00ff;
             animation: glow 2s infinite;
         }
         @keyframes glow {
-            0%, 100% { text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff0000; }
-            50% { text-shadow: 0 0 5px #fff; }
+            0%, 100% { text-shadow: 0 0 12px #ff00ff, 0 0 24px #ff0000; }
+            50% { text-shadow: 0 0 6px #fff; }
         }
 
         /* 磁贴容器 */
@@ -108,9 +109,9 @@
 
         /* 彩色渐变磁贴 */
         .tile {
-            border-radius: 24px;
+            border-radius: 28px;
             overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 10px 24px rgba(0,0,0,0.4);
             transition: transform 0.3s, box-shadow 0.3s;
             cursor: pointer;
             text-decoration: none;
@@ -119,51 +120,51 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 20px 16px;
-            min-height: 160px;
+            padding: 22px 16px;
+            min-height: 170px;
             text-align: center;
             position: relative;
         }
         .tile:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 16px 32px rgba(0,0,0,0.5);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
 
-        /* 图片：48px + 圆角 + 白边 */
+        /* 图片：60px + 圆角 + 白边 */
         .tile img {
-            width: 48px;
-            height: 48px;
-            border-radius: 16px;
-            margin-bottom: 12px;
+            width: 60px;
+            height: 60px;
+            border-radius: 20px;
+            margin-bottom: 14px;
             object-fit: cover;
-            border: 3px solid rgba(255,255,255,0.8);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            border: 4px solid rgba(255,255,255,0.9);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.35);
             transition: transform 0.3s ease;
         }
         .tile:hover img {
-            transform: scale(1.1);
+            transform: scale(1.12);
         }
 
         .tile-title {
             font-weight: bold;
-            font-size: 17px;
+            font-size: 18px;
             margin-bottom: 6px;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.7);
         }
         .tile-desc {
-            font-size: 13px;
-            color: #eee;
-            line-height: 1.4;
+            font-size: 13.5px;
+            color: #f0f0f0;
+            line-height: 1.45;
             opacity: 0.95;
         }
 
         /* 每个磁贴独立渐变 */
-        .tile:nth-child(1) { background: linear-gradient(135deg, #00d2ff, #3a7bd5); }
-        .tile:nth-child(2) { background: linear-gradient(135deg, #667eea, #764ba2); }
-        .tile:nth-child(3) { background: linear-gradient(135deg, #f093fb, #f5576c); }
-        .tile:nth-child(4) { background: linear-gradient(135deg, #4facfe, #00f2fe); }
-        .tile:nth-child(5) { background: linear-gradient(135deg, #ff9a9e, #fad0c4); }
-        .tile:nth-child(6) { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+        .tile:nth-child(1) { background: linear-gradient(135deg, #00c6ff, #0072ff); }
+        .tile:nth-child(2) { background: linear-gradient(135deg, #8e2de2, #4a00e0); }
+        .tile:nth-child(3) { background: linear-gradient(135deg, #ff6ec4, #7873f5); }
+        .tile:nth-child(4) { background: linear-gradient(135deg, #43cea2, #185a9d); }
+        .tile:nth-child(5) { background: linear-gradient(135deg, #ff9a9e, #fecfef); }
+        .tile:nth-child(6) { background: linear-gradient(135deg, #a8edea, #fed6e3); }
 
         /* 个人简介 */
         .profile-card {
@@ -254,9 +255,10 @@
         }
 
         @media (max-width: 480px) {
-            .tile img { width: 42px; height: 42px; }
-            .tile-title { font-size: 15px; }
-            .tile-desc { font-size: 12px; }
+            .tile img { width: 52px; height: 52px; }
+            .tile-title { font-size: 16px; }
+            .tile-desc { font-size: 12.5px; }
+            .tile { padding: 18px 14px; min-height: 155px; }
         }
     </style>
 </head>
@@ -274,7 +276,7 @@
         防止掉失！购买影片前先注册
     </div>
 
-    <!-- 彩色磁贴导航 -->
+    <!-- 彩色磁贴导航（图片60px） -->
     <div class="tiles-container">
         <a href="https://l6k0z7n2y7s9z8m4v4i9.cc/?channel=6d530728c0583d8037db5bd8e9e6ea52" target="_blank" class="tile">
             <img src="images11.jpg" alt="Ai脱衣">
