@@ -6,7 +6,7 @@
     <title>小黑巷 - 深夜不打烊的秘密花园</title>
     <meta name="description" content="小黑巷每日更新AI脱衣、萝莉资源、真人直播，注册永久观看！">
     <meta property="og:title" content="小黑巷 - 深夜不打烊的秘密花园">
-    <meta property="og:description" content="小黑巷每日更新AI脱衣、萝莉资源、真人直播，注册永久观看！">
+    <meta property="og:description" content="AI脱衣、萝莉资源、真人直播，注册永久观看！">
     <meta property="og:image" content="https://你的域名.com/share.jpg">
     <meta property="og:url" content="https://你的域名.com">
     <meta property="og:type" content="website">
@@ -50,7 +50,6 @@
         }
 
         /* 暗黑/亮白模式 */
-        body.dark::before { background: rgba(0, 0, 0, 0.9); }
         body.light { 
             background: #f0f8ff url('https://images.unsplash.com/photo-1492011221367-f47e3ccd77a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover fixed;
         }
@@ -110,7 +109,7 @@
             .tiles-container { grid-template-columns: repeat(3, 1fr); }
         }
 
-        /* 彩虹流动磁贴 + 遮罩 + 性能优化 */
+        /* 彩虹流动磁贴 */
         .tile {
             border-radius: 32px;
             overflow: hidden;
@@ -158,7 +157,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* 每个磁贴错开动画 */
         .tile:nth-child(1) { animation-delay: 0s; }
         .tile:nth-child(2) { animation-delay: 0.5s; }
         .tile:nth-child(3) { animation-delay: 1s; }
@@ -166,7 +164,6 @@
         .tile:nth-child(5) { animation-delay: 2s; }
         .tile:nth-child(6) { animation-delay: 2.5s; }
 
-        /* 图片淡入 */
         .tile img {
             width: 80px;
             height: 80px;
@@ -290,7 +287,7 @@
             transform: rotate(360deg);
         }
 
-        /* 返回顶部按钮 */
+        /* 返回顶部 */
         .back-top {
             position: fixed;
             bottom: 80px;
@@ -310,22 +307,12 @@
         }
         .back-top.show { opacity: 1; }
 
-        /* 复制提示 */
-        .copy-tip {
-            text-align: center;
-            margin: 10px auto;
-            font-size: 13px;
-            color: #ffcc00;
-            z-index: 10;
-            position: relative;
-        }
-
         @media (max-width: 480px) {
-            .tiles-container { gap: 16px; padding: 16px; }
             .tile img { width: 68px; height: 68px; }
-            .tile-title { font-size: 18px; }
-            .tile-desc { font-size: 13.5px; }
+            .tile-title { font-size: 17px; }
+            .tile-desc { font-size: 13px; }
             .tile { padding: 22px 16px; min-height: 175px; }
+            .tiles-container { gap: 16px; padding: 16px; }
         }
     </style>
 </head>
@@ -343,10 +330,7 @@
         防止掉失！购买影片前先注册
     </div>
 
-    <!-- 复制提示 -->
-    <div class="copy-tip">点击磁贴复制注册链接</div>
-
-    <!-- 彩虹流动磁贴（默认 20s 超慢） -->
+    <!-- 彩虹流动磁贴（点击直达） -->
     <div class="tiles-container">
         <a href="https://l6k0z7n2y7s9z8m4v4i9.cc/?channel=6d530728c0583d8037db5bd8e9e6ea52" target="_blank" class="tile" style="--flow-speed: 20s;">
             <img src="images11.jpg" alt="Ai脱衣">
@@ -431,7 +415,6 @@
         const moonPath = "M21.64 13a1 1 0 0 1-1 .89 8.05 8.05 0 1 1-8.94-8.94 1 1 0 0 1 .9 1.75A6.06 6.06 0 1 0 18.75 19a1 1 0 0 1 1.9.36 8 8 0 0 1 1-6.36z";
         const sunPath = "M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-7v2a1 1 0 1 1-2 0V0a1 1 0 1 1 2 0zm0 22v-2a1 1 0 1 1-2 0v2a1 1 0 1 1 2 0zm10-10h-2a1 1 0 1 1 0-2h2a1 1 0 1 1 0 2zM2 12h2a1 1 0 1 1 0 2H2a1 1 0 1 1 0-2zm17.66-6.34l-1.42 1.42a1 1 0 1 1-1.42-1.42l1.42-1.42a1 1 0 1 1 1.42 1.42zm-11.32 0a1 1 0 0 1 0 1.42l-1.42 1.42a1 1 0 1 1-1.42-1.42l1.42-1.42a1 1 0 0 1 1.42 0zm11.32 12.68a1 1 0 0 1 0-1.42l1.42-1.42a1 1 0 1 1 1.42 1.42l-1.42 1.42a1 1 0 0 1-1.42 0zm-11.32 0a1 1 0 0 1-1.42 0l-1.42-1.42a1 1 0 1 1 1.42-1.42l1.42 1.42a1 1 0 0 1 0 1.42z";
         modeBtn.addEventListener('click', () => {
-            document.body.classList.toggle('dark');
             document.body.classList.toggle('light');
             if (document.body.classList.contains('light')) {
                 icon.innerHTML = `<path d="${sunPath}"/>`;
@@ -447,16 +430,11 @@
             document.querySelector('.back-top').classList.toggle('show', window.scrollY > 300);
         });
 
-        // 点击磁贴复制链接
-        document.querySelectorAll('.tile').forEach(tile => {
-            tile.addEventListener('click', e => {
-                const href = tile.getAttribute('href');
-                if (!href) return;
+        // 点击磁贴直接进入网站（无复制、无弹窗）
+        document.querySelectorAll('.tile a').forEach(link => {
+            link.addEventListener('click', e => {
                 e.preventDefault();
-                navigator.clipboard.writeText(href).then(() => {
-                    alert('注册链接已复制！快去注册吧！');
-                    setTimeout(() => window.open(href, '_blank'), 500);
-                });
+                window.open(link.getAttribute('href'), '_blank');
             });
         });
     </script>
