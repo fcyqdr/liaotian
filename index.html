@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>小黑巷</title>
+    <title>小黑巷 - 深夜不打烊的秘密花园</title>
+    <meta name="description" content="小黑巷每日更新AI脱衣、萝莉资源、真人直播，注册永久观看！">
+    <meta property="og:title" content="小黑巷 - 深夜不打烊的秘密花园">
+    <meta property="og:description" content="小黑巷每日更新AI脱衣、萝莉资源、真人直播，注册永久观看！">
+    <meta property="og:image" content="https://你的域名.com/share.jpg">
+    <meta property="og:url" content="https://你的域名.com">
+    <meta property="og:type" content="website">
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-95QQNEC27X"></script>
@@ -32,6 +38,7 @@
             color: #fff;
             min-height: 100vh;
             position: relative;
+            overflow-x: hidden;
         }
         body::before {
             content: '';
@@ -39,6 +46,7 @@
             top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.6);
             z-index: 1;
+            transition: background 0.6s ease;
         }
 
         /* 暗黑/亮白模式 */
@@ -102,7 +110,7 @@
             .tiles-container { grid-template-columns: repeat(3, 1fr); }
         }
 
-        /* 彩虹流动磁贴（支持任意流速） */
+        /* 彩虹流动磁贴 + 遮罩 + 性能优化 */
         .tile {
             border-radius: 32px;
             overflow: hidden;
@@ -121,11 +129,27 @@
             position: relative;
             background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
             background-size: 400% 400%;
-            animation: rainbowFlow var(--flow-speed, 6s) ease infinite;
+            animation: rainbowFlow var(--flow-speed, 20s) ease infinite;
+            will-change: background-position;
         }
         .tile:hover {
             transform: translateY(-10px);
             box-shadow: 0 24px 48px rgba(0,0,0,0.55);
+        }
+        .tile:active {
+            transform: translateY(-10px) scale(0.98);
+            transition: transform 0.1s;
+        }
+
+        /* 文字遮罩层 */
+        .tile::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 32px;
+            z-index: 1;
+            pointer-events: none;
         }
 
         @keyframes rainbowFlow {
@@ -142,7 +166,7 @@
         .tile:nth-child(5) { animation-delay: 2s; }
         .tile:nth-child(6) { animation-delay: 2.5s; }
 
-        /* 图片 */
+        /* 图片淡入 */
         .tile img {
             width: 80px;
             height: 80px;
@@ -153,9 +177,14 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.4);
             transition: transform 0.3s ease;
             z-index: 2;
+            opacity: 0;
+            animation: fadeInImg 0.6s forwards;
         }
         .tile:hover img {
             transform: scale(1.15);
+        }
+        @keyframes fadeInImg {
+            to { opacity: 1; }
         }
 
         .tile-title {
@@ -261,10 +290,41 @@
             transform: rotate(360deg);
         }
 
+        /* 返回顶部按钮 */
+        .back-top {
+            position: fixed;
+            bottom: 80px;
+            right: 25px;
+            width: 44px;
+            height: 44px;
+            background: rgba(255,107,0,0.9);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 99;
+            opacity: 0;
+            transition: opacity 0.3s;
+            cursor: pointer;
+        }
+        .back-top.show { opacity: 1; }
+
+        /* 复制提示 */
+        .copy-tip {
+            text-align: center;
+            margin: 10px auto;
+            font-size: 13px;
+            color: #ffcc00;
+            z-index: 10;
+            position: relative;
+        }
+
         @media (max-width: 480px) {
+            .tiles-container { gap: 16px; padding: 16px; }
             .tile img { width: 68px; height: 68px; }
-            .tile-title { font-size: 17px; }
-            .tile-desc { font-size: 13px; }
+            .tile-title { font-size: 18px; }
+            .tile-desc { font-size: 13.5px; }
             .tile { padding: 22px 16px; min-height: 175px; }
         }
     </style>
@@ -283,46 +343,42 @@
         防止掉失！购买影片前先注册
     </div>
 
-    <!-- 彩虹流动磁贴（支持 20s 等任意流速） -->
+    <!-- 复制提示 -->
+    <div class="copy-tip">点击磁贴复制注册链接</div>
+
+    <!-- 彩虹流动磁贴（默认 20s 超慢） -->
     <div class="tiles-container">
-        <!-- 20s 超慢流动 -->
         <a href="https://l6k0z7n2y7s9z8m4v4i9.cc/?channel=6d530728c0583d8037db5bd8e9e6ea52" target="_blank" class="tile" style="--flow-speed: 20s;">
             <img src="images11.jpg" alt="Ai脱衣">
             <div class="tile-title">Ai脱衣</div>
             <div class="tile-desc">AI智能去衣<br>满足你的性幻想！</div>
         </a>
 
-        <!-- 默认 6s -->
-        <a href="http://wv24.icu" target="_blank" class="tile"
-style="--flow-speed: 20s;">
+        <a href="http://wv24.icu" target="_blank" class="tile" style="--flow-speed: 20s;">
             <img src="images12.jpg" alt="幼女萝莉">
             <div class="tile-title">幼女萝莉</div>
             <div class="tile-desc">高清萝莉资源<br>分类清晰</div>
         </a>
 
-        <!-- 10s 缓慢 -->
         <a href="http://avaw.cc" target="_blank" class="tile" style="--flow-speed: 20s;">
             <img src="images3.jpg" alt="真人直播">
             <div class="tile-title">真人直播</div>
             <div class="tile-desc">24小时真人<br>互动强</div>
         </a>
 
-        <!-- 4s 快速 -->
-        <a href="http://se678.top" target="_blank" class="tile" style="--flow-speed: 18s;">
+        <a href="http://se678.top" target="_blank" class="tile" style="--flow-speed: 20s;">
             <img src="images4.jpg" alt="咸湿视频">
             <div class="tile-title">咸湿视频</div>
             <div class="tile-desc">人兽/欧美/亚洲<br>应有尽有</div>
         </a>
 
-        <!-- 30s 极慢（自定义） -->
-        <a href="https://www.iawrq2.vip:9103/entry/register14330/?i_code=27936549" target="_blank" class="tile" style="--flow-speed: 30s;">
+        <a href="https://www.iawrq2.vip:9103/entry/register14330/?i_code=27936549" target="_blank" class="tile" style="--flow-speed: 20s;">
             <img src="images1.jpg" alt="开云体育">
             <div class="tile-title">开云体育</div>
             <div class="tile-desc">全球赛事直播<br>实时投注</div>
         </a>
 
-        <!-- 2s 极快 -->
-        <a href="http://42.51.43.192:25504?Tesla=NjAwNDMz" target="_blank" class="tile" style="--flow-speed: 25s;">
+        <a href="http://42.51.43.192:25504?Tesla=NjAwNDMz" target="_blank" class="tile" style="--flow-speed: 20s;">
             <img src="images2.jpg" alt="欧亚国际">
             <div class="tile-title">欧亚国际</div>
             <div class="tile-desc">实体娱乐城<br>尊贵体验</div>
@@ -349,6 +405,9 @@ style="--flow-speed: 20s;">
             <path d="M21.64 13a1 1 0 0 1-1 .89 8.05 8.05 0 1 1-8.94-8.94 1 1 0 0 1 .9 1.75A6.06 6.06 0 1 0 18.75 19a1 1 0 0 1 1.9.36 8 8 0 0 1 1-6.36z"/>
         </svg>
     </button>
+
+    <!-- 返回顶部 -->
+    <button class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Top</button>
 
     <script>
         // 动态签名
@@ -381,6 +440,24 @@ style="--flow-speed: 20s;">
                 icon.innerHTML = `<path d="${moonPath}"/>`;
                 modeBtn.title = '切换到亮白模式';
             }
+        });
+
+        // 返回顶部按钮显示
+        window.addEventListener('scroll', () => {
+            document.querySelector('.back-top').classList.toggle('show', window.scrollY > 300);
+        });
+
+        // 点击磁贴复制链接
+        document.querySelectorAll('.tile').forEach(tile => {
+            tile.addEventListener('click', e => {
+                const href = tile.getAttribute('href');
+                if (!href) return;
+                e.preventDefault();
+                navigator.clipboard.writeText(href).then(() => {
+                    alert('注册链接已复制！快去注册吧！');
+                    setTimeout(() => window.open(href, '_blank'), 500);
+                });
+            });
         });
     </script>
 
