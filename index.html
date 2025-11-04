@@ -5,11 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>小黑巷 - 深夜不打烊的秘密花园</title>
     <meta name="description" content="小黑巷每日更新AI脱衣、萝莉资源、真人直播，注册永久观看！">
-    <meta property="og:title" content="小黑巷 - 深夜不打烊的秘密花园">
-    <meta property="og:description" content="AI脱衣、萝莉资源、真人直播，注册永久观看！">
-    <meta property="og:image" content="https://你的域名.com/share.jpg">
-    <meta property="og:url" content="https://你的域名.com">
-    <meta property="og:type" content="website">
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-95QQNEC27X"></script>
@@ -129,18 +124,11 @@
             background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
             background-size: 400% 400%;
             animation: rainbowFlow var(--flow-speed, 20s) ease infinite;
-            will-change: background-position;
         }
         .tile:hover {
             transform: translateY(-10px);
             box-shadow: 0 24px 48px rgba(0,0,0,0.55);
         }
-        .tile:active {
-            transform: translateY(-10px) scale(0.98);
-            transition: transform 0.1s;
-        }
-
-        /* 文字遮罩层 */
         .tile::before {
             content: '';
             position: absolute;
@@ -148,15 +136,12 @@
             background: rgba(0, 0, 0, 0.25);
             border-radius: 32px;
             z-index: 1;
-            pointer-events: none;
         }
-
         @keyframes rainbowFlow {
             0%   { background-position: 0% 50%; }
             50%  { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-
         .tile:nth-child(1) { animation-delay: 0s; }
         .tile:nth-child(2) { animation-delay: 0.5s; }
         .tile:nth-child(3) { animation-delay: 1s; }
@@ -172,17 +157,13 @@
             object-fit: cover;
             border: 5px solid rgba(255,255,255,0.95);
             box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s;
             z-index: 2;
             opacity: 0;
             animation: fadeInImg 0.6s forwards;
         }
-        .tile:hover img {
-            transform: scale(1.15);
-        }
-        @keyframes fadeInImg {
-            to { opacity: 1; }
-        }
+        .tile:hover img { transform: scale(1.15); }
+        @keyframes fadeInImg { to { opacity: 1; } }
 
         .tile-title {
             font-weight: bold;
@@ -240,8 +221,6 @@
             line-height: 1.5;
             color: #eee;
         }
-
-        /* 动态签名 */
         .signature {
             font-style: italic;
             color: #ffcc00;
@@ -250,11 +229,45 @@
             opacity: 0;
             animation: fadeIn 1s forwards;
         }
-        @keyframes fadeIn {
-            to { opacity: 1; }
+        @keyframes fadeIn { to { opacity: 1; } }
+
+        /* 防封备用区 */
+        .backup-section {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            background: linear-gradient(45deg, #ff0000, #ff7300);
+            border-radius: 16px;
+            text-align: center;
+            color: #fff;
+        }
+        .backup-section h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        .qr-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .qr-item {
+            text-align: center;
+        }
+        .qr-item p {
+            margin: 8px 0;
+            font-weight: bold;
+        }
+        .qr-item img {
+            width: 160px;
+            height: 160px;
+            border-radius: 12px;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
         }
 
-        /* 模式切换按钮 */
+        /* 模式切换 + 返回顶部 */
         .mode-toggle {
             position: fixed;
             bottom: 25px;
@@ -269,7 +282,7 @@
             cursor: pointer;
             backdrop-filter: blur(12px);
             box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-            transition: all 0.4s ease;
+            transition: all 0.4s;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -278,16 +291,6 @@
             background: rgba(255, 215, 0, 0.9);
             transform: scale(1.12) rotate(15deg);
         }
-        .mode-toggle svg {
-            width: 26px;
-            height: 26px;
-            transition: transform 0.4s ease;
-        }
-        .mode-toggle:hover svg {
-            transform: rotate(360deg);
-        }
-
-        /* 返回顶部 */
         .back-top {
             position: fixed;
             bottom: 80px;
@@ -330,39 +333,39 @@
         防止掉失！购买影片前先注册
     </div>
 
-    <!-- 彩虹流动磁贴（点击直达） -->
+    <!-- 彩虹磁贴 -->
     <div class="tiles-container">
-        <a href="https://l6k0z7n2y7s9z8m4v4i9.cc/?channel=6d530728c0583d8037db5bd8e9e6ea52" target="_blank" class="tile" style="--flow-speed: 20s;">
+        <a href="https://l6k0z7n2y7s9z8m4v4i9.cc/?channel=6d530728c0583d8037db5bd8e9e6ea52" target="_blank" class="tile">
             <img src="images11.jpg" alt="Ai脱衣">
             <div class="tile-title">Ai脱衣</div>
             <div class="tile-desc">AI智能去衣<br>满足你的性幻想！</div>
         </a>
 
-        <a href="http://wv24.icu" target="_blank" class="tile" style="--flow-speed: 20s;">
+        <a href="http://wv24.icu" target="_blank" class="tile">
             <img src="images12.jpg" alt="幼女萝莉">
             <div class="tile-title">幼女萝莉</div>
             <div class="tile-desc">高清萝莉资源<br>分类清晰</div>
         </a>
 
-        <a href="http://avaw.cc" target="_blank" class="tile" style="--flow-speed: 20s;">
+        <a href="http://avaw.cc" target="_blank" class="tile">
             <img src="images3.jpg" alt="真人直播">
             <div class="tile-title">真人直播</div>
             <div class="tile-desc">24小时真人<br>互动强</div>
         </a>
 
-        <a href="http://se678.top" target="_blank" class="tile" style="--flow-speed: 20s;">
+        <a href="http://se678.top" target="_blank" class="tile">
             <img src="images4.jpg" alt="咸湿视频">
             <div class="tile-title">咸湿视频</div>
             <div class="tile-desc">人兽/欧美/亚洲<br>应有尽有</div>
         </a>
 
-        <a href="https://www.iawrq2.vip:9103/entry/register14330/?i_code=27936549" target="_blank" class="tile" style="--flow-speed: 20s;">
+        <a href="https://www.iawrq2.vip:9103/entry/register14330/?i_code=27936549" target="_blank" class="tile">
             <img src="images1.jpg" alt="开云体育">
             <div class="tile-title">开云体育</div>
             <div class="tile-desc">全球赛事直播<br>实时投注</div>
         </a>
 
-        <a href="http://42.51.43.192:25504?Tesla=NjAwNDMz" target="_blank" class="tile" style="--flow-speed: 20s;">
+        <a href="http://42.51.43.192:25504?Tesla=NjAwNDMz" target="_blank" class="tile">
             <img src="images2.jpg" alt="欧亚国际">
             <div class="tile-title">欧亚国际</div>
             <div class="tile-desc">实体娱乐城<br>尊贵体验</div>
@@ -383,8 +386,27 @@
         </div>
     </div>
 
+    <!-- 防封备用区 -->
+    <div class="backup-section">
+        <h3>主站被封？扫码继续！</h3>
+        <div class="qr-container">
+            <!-- 备用域名 -->
+            <div class="qr-item">
+                <p style="color:#0ff;">备用域名</p>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://av66.xyz" alt="备用域名">
+                <p>av66.xyz</p>
+            </div>
+            <!-- IP 直连 -->
+            <div class="qr-item">
+                <p style="color:#ff0;">IP直连（永不封）</p>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=http://185.199.108.153" alt="IP直连">
+                <p>185.199.108.153</p>
+            </div>
+        </div>
+    </div>
+
     <!-- 模式切换 -->
-    <button class="mode-toggle" id="mode-toggle" title="切换到亮白模式">
+    <button class="mode-toggle" id="mode-toggle">
         <svg id="mode-icon" viewBox="0 0 24 24" fill="currentColor">
             <path d="M21.64 13a1 1 0 0 1-1 .89 8.05 8.05 0 1 1-8.94-8.94 1 1 0 0 1 .9 1.75A6.06 6.06 0 1 0 18.75 19a1 1 0 0 1 1.9.36 8 8 0 0 1 1-6.36z"/>
         </svg>
@@ -418,24 +440,14 @@
             document.body.classList.toggle('light');
             if (document.body.classList.contains('light')) {
                 icon.innerHTML = `<path d="${sunPath}"/>`;
-                modeBtn.title = '切换到暗黑模式';
             } else {
                 icon.innerHTML = `<path d="${moonPath}"/>`;
-                modeBtn.title = '切换到亮白模式';
             }
         });
 
-        // 返回顶部按钮显示
+        // 返回顶部
         window.addEventListener('scroll', () => {
             document.querySelector('.back-top').classList.toggle('show', window.scrollY > 300);
-        });
-
-        // 点击磁贴直接进入网站（无复制、无弹窗）
-        document.querySelectorAll('.tile a').forEach(link => {
-            link.addEventListener('click', e => {
-                e.preventDefault();
-                window.open(link.getAttribute('href'), '_blank');
-            });
         });
     </script>
 
