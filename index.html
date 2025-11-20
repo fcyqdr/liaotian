@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>小黑巷 - 深夜不打烊的秘密花园</title>
-    <meta name="description" content="小黑巷每日更新AI脱衣、萝莉资源、真人直播，注册永久观看！">
 
-    <!-- 统计代码保持不变 -->
+    <!-- 统计代码 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-95QQNEC27X"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-95QQNEC27X');</script>
     <script type="text/javascript">
@@ -28,23 +27,23 @@
         .tiles-container{padding:20px;display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:1000px;margin:0 auto}
         @media(min-width:768px){.tiles-container{grid-template-columns:repeat(3,1fr);gap:24px}}
 
-        /* 终极修复：彩虹边框绝对可见 + 更粗更亮 + 超强立体感 */
+        /* 终极磁贴：彩虹流动边框 + 超高亮文字 */
         .tile{
             height:195px;
             border-radius:30px;
             position:relative;
             overflow:hidden;
             cursor:pointer;
-            padding:6px; /* 关键！留出边框空间 */
-            background:linear-gradient(45deg,#ff0000,#ff7300,#fffb00,#48ff00,#00ffd5,#002bff,#8a2be2,#ff00ff,#ff0000);
-            background-size:400% 400%;
-            animation:rainbow 20s ease infinite;
-            box-shadow:0 15px 40px rgba(0,0,0,0.7);
+            padding:7px;                     /* 边框厚度 */
+            background:linear-gradient(45deg,#ff0040,#ff8c00,#ff0,#00ff00,#00ffff,#0066ff,#8b00ff,#ff0040);
+            background-size:600% 600%;
+            animation:rainbow 16s ease infinite;
+            box-shadow:0 15px 40px rgba(0,0,0,0.8);
             transition:all 0.4s ease;
         }
         .tile:hover{
             transform:translateY(-14px) scale(1.05);
-            box-shadow:0 35px 70px rgba(0,0,0,0.9);
+            box-shadow:0 35px 80px rgba(0,0,0,0.95);
         }
         @keyframes rainbow{
             0%{background-position:0% 50%}
@@ -52,52 +51,67 @@
             100%{background-position:0% 50%}
         }
 
-        /* 内层卡片（图片+文字） */
         .tile-inner{
             width:100%;height:100%;
-            border-radius:24px;
+            border-radius:23px;
             overflow:hidden;
             position:relative;
-            background:#111;
+            background:#000;
         }
         .tile-bg{
-            position:absolute;
-            top:0;left:0;right:0;bottom:0;
+            position:absolute;top:0;left:0;right:0;bottom:0;
             background-size:cover !important;
             background-position:center !important;
         }
         .tile::after{
-            content:'';
-            position:absolute;
-            left:0;right:0;bottom:0;height:75%;
-            background:linear-gradient(180deg,transparent 0%,rgba(0,0,0,0.85) 100%);
+            content:'';position:absolute;left:0;right:0;bottom:0;height:75%;
+            background:linear-gradient(180deg,transparent 0%,rgba(0,0,0,0.88) 100%);
         }
+
+        /* 超高亮字体（纯白 + 荧光外发光） */
         .tile-content{
-            position:absolute;
-            bottom:18px;
-            left:0;right:0;
-            text-align:center;
-            z-index:2;
-            padding:0 14px;
+            position:absolute;bottom:18px;left:0;right:0;text-align:center;z-index:2;padding:0 14px;
         }
-        .tile-title{font-size:19px;font-weight:bold;text-shadow:0 3px 10px rgba(0,0,0,0.95);margin-bottom:5px}
-        .tile-desc{font-size:13.8px;text-shadow:0 1px 8px rgba(0,0,0,0.95);line-height:1.4}
+        .tile-title{
+            font-size:20px;font-weight:bold;
+            color:#ffffff !important;
+            text-shadow:
+                0 0 10px #fff,
+                0 0 20px #fff,
+                0 0 30px #00ffff,
+                0 0 40px #00ffff,
+                0 0 50px #00ffff,
+                0 0 60px #00ffff;
+            margin-bottom:4px;
+            animation:glowText 2s ease-in-out infinite alternate;
+        }
+        .tile-desc{
+            font-size:14px;line-height:1.4;
+            color:#ffffff !important;
+            text-shadow:
+                0 0 8px #fff,
+                0 0 16px #00ffff,
+                0 0 24px #00ffff;
+        }
+        @keyframes glowText{
+            from{text-shadow:0 0 10px #fff,0 0 20px #fff,0 0 30px #00ffff,0 0 40px #00ffff;}
+            to{text-shadow:0 0 20px #fff,0 0 30px #fff,0 0 40px #00ffff,0 0 60px #00ffff,0 0 80px #00ffff;}
+        }
 
         @media(max-width:480px){
-            .tile{height:175px;padding:5px}
+            .tile{height:175px;padding:6px}
             .tile-inner{border-radius:20px}
-            .tile-title{font-size:17px}
-            .tile-desc{font-size:12.5px}
+            .tile-title{font-size:18px}
+            .tile-desc{font-size:12.8px}
         }
 
-        /* 以下是你原来的简介、防封区、按钮等样式，全部保留（已精简但完整） */
+        /* 以下保持你原来的简介、防封区、按钮样式 */
         .profile-card{max-width:1000px;margin:20px auto;padding:20px;background:rgba(255,255,255,0.15);border-radius:16px;backdrop-filter:blur(12px);box-shadow:0 8px 25px rgba(0,0,0,0.3);display:flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:center}
         .profile-avatar{width:90px;height:90px;border-radius:50%;overflow:hidden;border:4px solid rgba(255,255,255,0.5);box-shadow:0 4px 15px rgba(0,0,0,0.3)}
         .profile-avatar img{width:100%;height:100%;object-fit:cover}
         .profile-info h3{margin:0 0 8px;font-size:20px;color:#ffd700}
         .profile-info p{margin:4px 0;font-size:14px;line-height:1.5;color:#eee}
-        .signature{font-style:italic;color:#ffcc00;margin-top:10px;font-size:13px;opacity:0;animation:fadeIn 1s forwards}
-        @keyframes fadeIn{to{opacity:1}}
+        .signature{font-style:italic;color:#ffcc00;margin-top:10px;font-size:13px}
 
         .backup-section{max-width:1000px;margin:40px auto;padding:20px;background:linear-gradient(45deg,#ff0000,#ff7300);border-radius:16px;text-align:center;color:#fff}
         .qr-container{display:flex;justify-content:center;gap:20px;flex-wrap:wrap}
@@ -105,7 +119,7 @@
         .qr-item img{width:160px;height:160px;border-radius:12px;border:3px solid #fff;box-shadow:0 4px 12px rgba(0,0,0,0.4)}
 
         .mode-toggle{position:fixed;bottom:25px;right:25px;z-index:100;width:50px;height:50px;background:rgba(0,0,0,0.6);border:none;border-radius:50%;color:white;cursor:pointer;backdrop-filter:blur(12px);box-shadow:0 6px 20px rgba(0,0,0,0.4)}
-        .back-top{position:fixed;bottom:80px;right:25px;z-index:99;width:44px;height:44px;background:rgba(255,107,0,0.9);border:none;border-radius:50%;color:white;font-weight:bold;opacity:0;transition:opacity 0.3s;cursor:pointer}
+        .back-top{position:fixed;bottom:80px;right:25px;width:44px;height:44px;background:rgba(255,107,0,0.9);border:none;border-radius:50%;color:white;font-weight:bold;opacity:0;transition:opacity 0.3s;cursor:pointer}
         .back-top.show{opacity:1}
     </style>
 </head>
@@ -114,7 +128,6 @@
     <div class="announcement"><div class="announcement-content">防止影片掉失，先注册再购买！！</div></div>
     <div class="header">防止掉失！购买影片前先注册</div>
 
-    <!-- 炫彩立体磁贴（边框必现） -->
     <div class="tiles-container">
         <a href="http://vavc.cc" target="_blank" class="tile">
             <div class="tile-inner">
@@ -177,7 +190,7 @@
         </a>
     </div>
 
-    <!-- 个人简介 + 防封区 + 按钮 + JS 全保留 -->
+    <!-- 个人简介 + 防封区 + 按钮 + JS -->
     <div class="profile-card">
         <div class="profile-avatar"><img src="avatar.jpg" alt="站长头像"></div>
         <div class="profile-info">
