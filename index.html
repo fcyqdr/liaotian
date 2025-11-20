@@ -46,6 +46,7 @@
             font-size: 15px;
             overflow: hidden;
             white-space: nowrap;
+            z-index: 10;
         }
         .announcement-content {
             display: inline-block;
@@ -65,6 +66,7 @@
             font-size: 19px;
             text-shadow: 0 0 12px #ff00ff;
             animation: glow 2s infinite;
+            z-index: 10;
         }
         @keyframes glow {
             0%,100% { text-shadow: 0 0 12px #ff00ff, 0 0 24px #ff0000; }
@@ -79,12 +81,14 @@
             gap: 18px;
             max-width: 1000px;
             margin: 0 auto;
+            z-index: 10;
+            position: relative;
         }
         @media (min-width: 768px) {
             .tiles-container { grid-template-columns: repeat(3, 1fr); gap: 22px; }
         }
 
-        /* 终极版：图片100%静态铺满 */
+        /* 终极版：图片100%铺满（已强制修复） */
         .tile {
             border-radius: 28px;
             overflow: hidden;
@@ -103,9 +107,9 @@
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
+            background: inherit !important;               /* 继承父级背景图 */
             background-size: cover !important;
             background-position: center !important;
-            background-repeat: no-repeat !important;
         }
 
         .tile::after {
@@ -136,8 +140,50 @@
             line-height: 1.4;
         }
 
-        /* 个人简介、备用区、切换按钮等保持你原来样式 */
-        .profile-card,.backup-section,.mode-toggle,.back-top { /* 你原来的样式全部保留 */ }
+        /* 个人简介 */
+        .profile-card {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            z-index: 10;
+            position: relative;
+        }
+        .profile-avatar { width: 90px; height: 90px; border-radius: 50%; overflow: hidden; border: 4px solid rgba(255,255,255,0.5); box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        .profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .profile-info h3 { margin: 0 0 8px; font-size: 20px; color: #ffd700; }
+        .profile-info p { margin: 4px 0; font-size: 14px; line-height: 1.5; color: #eee; }
+        .signature { font-style: italic; color: #ffcc00; margin-top: 10px; font-size: 13px; }
+
+        /* 防封区 */
+        .backup-section {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            background: linear-gradient(45deg, #ff0000, #ff7300);
+            border-radius: 16px;
+            text-align: center;
+            color: #fff;
+            z-index: 10;
+            position: relative;
+        }
+        .qr-container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .qr-item p { margin: 8px 0; font-weight: bold; }
+        .qr-item img { width: 160px; height: 160px; border-radius: 12px; border: 3px solid #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
+
+        /* 切换按钮 & 返回顶部 */
+        .mode-toggle, .back-top { position: fixed; right: 25px; z-index: 100; border: none; border-radius: 50%; color: white; cursor: pointer; }
+        .mode-toggle { bottom: 25px; width: 50px; height: 50px; background: rgba(0,0,0,0.6); backdrop-filter: blur(12px); box-shadow: 0 6px 20px rgba(0,0,0,0.4); }
+        .back-top { bottom: 80px; width: 44px; height: 44px; background: rgba(255,107,0,0.9); opacity: 0; transition: opacity 0.3s; }
+        .back-top.show { opacity: 1; }
 
         @media (max-width: 480px) {
             .tile { height: 170px; }
@@ -154,6 +200,7 @@
 
     <div class="header">防止掉失！购买影片前先注册</div>
 
+    <!-- 磁贴区（已100%修复） -->
     <div class="tiles-container">
         <a href="http://vavc.cc" target="_blank" class="tile" style="background-image:url('images20.jpg');">
             <div class="tile-content">
@@ -198,8 +245,57 @@
         </a>
     </div>
 
-    <!-- 下面直接粘贴你原来完整的个人简介 + 防封区 + 切换按钮 + JS 代码即可 -->
-    <!--（为了不重复发超长内容，这里省略，你直接从你原来的 index.html 复制粘贴过来就行）-->
+    <!-- 个人简介 -->
+    <div class="profile-card">
+        <div class="profile-avatar">
+            <img src="avatar.jpg" alt="站长头像">
+        </div>
+        <div class="profile-info">
+            <h3>小黑巷站长</h3>
+            <p>欢迎来到小黑巷！这里是你深夜的秘密花园</p>
+            <p>每日更新最新资源，专注分享不为人知的快乐</p>
+            <p>Heart Heart Heart Heart Heart Heart</p>
+            <p class="signature" id="signature"></p>
+        </div>
+    </div>
 
+    <!-- 防封备用区 -->
+    <div class="backup-section">
+        <h3>主站被封？扫码继续！  永不失联</h3>
+        <div class="qr-container">
+            <div class="qr-item">
+                <p style="color:#0ff;">备用站点（永不封）</p>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://kp235.vip" alt="备用站点">
+                <p>kp235.vip</p>
+            </div>
+            <div class="qr-item">
+                <p style="color:#ff0;">GitHub 永久地址</p>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://fcyqdr.github.io/liaotian/" alt="GitHub源">
+                <p>fcyqdr.github.io/liaotian</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 切换 & 返回顶部 -->
+    <button class="mode-toggle" id="mode-toggle">Dark Mode Icon</button>
+    <button class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Top</button>
+
+    <script>
+        // 动态签名
+        const signatures = ["深夜不打烊，快乐不停歇","资源每日更新，质量有保证","注册后享永久观看权限","一个人的快乐，由我来守护","小黑巷，懂你的夜"];
+        let i = 0;
+        const sig = document.getElementById('signature');
+        function change() {
+            sig.style.opacity = 0;
+            setTimeout(() => { sig.textContent = signatures[i]; sig.style.opacity = 1; i = (i+1) % signatures.length; }, 500);
+        }
+        change();
+        setInterval(change, 8000);
+
+        // 返回顶部显示
+        window.addEventListener('scroll', () => {
+            document.querySelector('.back-top').classList.toggle('show', window.scrollY > 300);
+        });
+    </script>
 </body>
 </html>
